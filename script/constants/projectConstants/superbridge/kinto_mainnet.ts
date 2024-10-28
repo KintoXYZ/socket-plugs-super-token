@@ -595,7 +595,7 @@ export const pc: ProjectConstants = {
       }
     },
     [Tokens.SPX]: {
-      vaultChains: [ChainSlug.MAINNET, ChainSlug.ARBITRUM, ChainSlug.BASE],
+      vaultChains: [ChainSlug.MAINNET, ChainSlug.BASE],
       controllerChains: [ChainSlug.KINTO],
       hook: {
         hookType: Hooks.KINTO_HOOK,
@@ -618,12 +618,6 @@ export const pc: ProjectConstants = {
               sendingLimit: "40000000"
             }
           },
-          [ChainSlug.ARBITRUM]: {
-            [IntegrationTypes.fast]: {
-              receivingLimit: "4000000",
-              sendingLimit: "40000000"
-            }
-          }
         }
       }
     }
