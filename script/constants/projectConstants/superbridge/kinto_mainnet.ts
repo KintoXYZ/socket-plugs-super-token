@@ -593,6 +593,33 @@ export const pc: ProjectConstants = {
           }
         }
       }
+    },
+    [Tokens.SPX]: {
+      vaultChains: [ChainSlug.MAINNET, ChainSlug.BASE],
+      controllerChains: [ChainSlug.KINTO],
+      hook: {
+        hookType: Hooks.KINTO_HOOK,
+        limitsAndPoolId: {
+          [ChainSlug.MAINNET]: {
+            [IntegrationTypes.fast]: {
+              receivingLimit: "4000000",
+              sendingLimit: "40000000"
+            }
+          },
+          [ChainSlug.KINTO]: {
+            [IntegrationTypes.fast]: {
+              receivingLimit: "40000000",
+              sendingLimit: "4000000"
+            }
+          },
+          [ChainSlug.BASE]: {
+            [IntegrationTypes.fast]: {
+              receivingLimit: "4000000",
+              sendingLimit: "40000000"
+            }
+          },
+        }
+      }
     }
   },
 };
