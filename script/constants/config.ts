@@ -49,7 +49,7 @@ export const getTokens = () => {
   );
   tokens.forEach((token) => {
     if (!Object.values(Tokens).includes(token as Tokens))
-      throw new Error("TOKENS are invalid");
+      throw new Error(`TOKENS are invalid, ${token}`);
   });
   return tokens;
 };
