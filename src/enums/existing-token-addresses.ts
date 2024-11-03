@@ -47,8 +47,8 @@ export const ExistingTokenAddresses: {
     [Tokens.arETH] : '0xCc9EE9483f662091a1de4795249E24aC0aC2630f',
     [Tokens.cbETH] : '0xBe9895146f7AF43049ca1c1AE358B0541Ea49704',
     [Tokens.acbETH] : '0x977b6fc5dE62598B08C85AC8Cf2b745874E8b78c',
-    [Tokens.cbBTC] : '0xBe9895146f7AF43049ca1c1AE358B0541Ea49704',
-    [Tokens.acbBTC] : '0x977b6fc5dE62598B08C85AC8Cf2b745874E8b78c'
+    [Tokens.cbBTC] : '0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf',
+    [Tokens.acbBTC] : '0x5c647cE0Ae10658ec44FA4E11A51c96e94efd1Dd'
   },
   [ChainSlug.ARBITRUM]: {
     [Tokens.USDCE]: "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
