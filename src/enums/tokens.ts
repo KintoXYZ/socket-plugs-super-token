@@ -30,7 +30,7 @@ export enum Tokens {
   SOL = "SOL",
   SPX = "SPX",
   AAVE = 'AAVE',
-  aAAVE = 'aAAVE ',
+  aAAVE = 'aAAVE',
   aETH = 'aETH',
   WBTC = 'WBTC',
   aWBTC = 'aWBTC',
