@@ -5,7 +5,6 @@ export const tokenDecimals: { [key in Tokens]: number } = {
   [Tokens.USDCE]: 6,
   [Tokens.WETH]: 18,
   [Tokens.SNX]: 18,
-  [Tokens.WSTETH]: 18,
   [Tokens.GUARD]: 18,
   [Tokens.ETH]: 18,
   [Tokens.EIGEN]: 18,
@@ -52,5 +51,7 @@ export const tokenDecimals: { [key in Tokens]: number } = {
   [Tokens.cbETH] : 18,
   [Tokens.acbETH] : 18,
   [Tokens.cbBTC] : 8,
-  [Tokens.acbBTC] : 8
+  [Tokens.acbBTC] : 8,
+  [Tokens.WSTETH]: 18,
+  [Tokens.aWSTETH]: 18
 };

@@ -6,7 +6,6 @@ export const tokenSymbol: { [key in Tokens]: string } = {
   [Tokens.USDC]: "USDC",
   [Tokens.WETH]: "WETH",
   [Tokens.SNX]: "SNX",
-  [Tokens.WSTETH]: "wstETH",
   [Tokens.DAI]: "DAI",
   [Tokens.GUARD]: "GUARD",
   [Tokens.ETH]: "ETH",
@@ -52,5 +51,7 @@ export const tokenSymbol: { [key in Tokens]: string } = {
   [Tokens.cbETH] : 'cbETH',
   [Tokens.acbETH] : 'acbETH',
   [Tokens.cbBTC] : 'cbBTC',
-  [Tokens.acbBTC] : 'acbBTC'
+  [Tokens.acbBTC] : 'acbBTC',
+  [Tokens.WSTETH]: "wstETH",
+  [Tokens.aWSTETH]: "awstETH"
 };

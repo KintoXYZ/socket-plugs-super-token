@@ -4,7 +4,6 @@ export enum Tokens {
   USDC = "USDC",
   WETH = "WETH",
   SNX = "SNX",
-  WSTETH = "wstETH",
   DAI = "DAI",
   GUARD = "GUARD",
   ETH = "ETH",
@@ -50,5 +49,7 @@ export enum Tokens {
   cbETH = 'cbETH',
   acbETH = 'acbETH',
   cbBTC = 'cbBTC',
-  acbBTC = 'acbBTC'
+  acbBTC = 'acbBTC',
+  WSTETH = "wstETH",
+  aWSTETH = "awstETH"
 }

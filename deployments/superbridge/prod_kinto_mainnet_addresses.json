@@ -461,6 +461,17 @@
           "FAST": "0x5D5a2999E91A336CA99da0cB636898ccB521f40a"
         }
       }
+    },
+    "awstETH": {
+      "isAppChain": false,
+      "NonMintableToken": "0x0B925eD163218f6662a35e0f0371Ac234f9E9371",
+      "Vault": "0x36DbBE9DC57D3D923b6eb36FF09BDA02499869ac",
+      "SenderHook": "0x6031125f8933b6b745791Cb4922601119Cf2dBD9",
+      "connectors": {
+        "7887": {
+          "FAST": "0xb5d5E523905bB397bCAfB36B252535a255d3E23C"
+        }
+      }
     }
   },
   "7887": {
@@ -1088,6 +1099,23 @@
           "FAST": "0x8f7a25099E33e47bC0fFe1b593F483d891820f67"
         }
       }
+    },
+    "awstETH": {
+      "isAppChain": true,
+      "MintableToken": "0xa067e743A89fB68f36A3e4514424d481b059fAb0",
+      "Controller": "0x5C80a33031DAb417C41C20eFe14447b9cf88fABf",
+      "KintoHook": "0xb0dA81987dCbAB97366404C6bc80c716c3FaB7F7",
+      "connectors": {
+        "1": {
+          "FAST": "0x74ca7B6e7Bc76CD1567f9177BD719aE317e3E6a7"
+        },
+        "8453": {
+          "FAST": "0x4a617B819c49415D48Fd23aa9cf316F903c5CEBc"
+        },
+        "42161": {
+          "FAST": "0xF5AB5692e6Cc752F81D872e920D143752AEB13C9"
+        }
+      }
     }
   },
   "8453": {
@@ -1220,6 +1248,17 @@
       "connectors": {
         "7887": {
           "FAST": "0x8DE0a2E451ea2fe0C785447B9Efd82884d2D27e3"
+        }
+      }
+    },
+    "awstETH": {
+      "isAppChain": false,
+      "NonMintableToken": "0x99CBC45ea5bb7eF3a5BC08FB1B7E56bB2442Ef0D",
+      "Vault": "0x34881462A9610aefD923959A19Ba34Fe60C49C93",
+      "SenderHook": "0xc3A9db91f0138d93FF98D5C05cb5b23dcCEcA4be",
+      "connectors": {
+        "7887": {
+          "FAST": "0x8F61B7048B0370D0cDB6EA88046A21ee26Fba7f0"
         }
       }
     }
@@ -1541,6 +1580,17 @@
       "connectors": {
         "7887": {
           "FAST": "0x7880eCdbFb79e7d5F42FecAefbf0555fCBef31f4"
+        }
+      }
+    },
+    "awstETH": {
+      "isAppChain": false,
+      "NonMintableToken": "0x513c7E3a9c69cA3e22550eF58AC1C0088e918FFf",
+      "Vault": "0xC3875afddEde146DCfED7e72b2Ad12B853CA1241",
+      "SenderHook": "0xE3E67d2c2005917bC31a92A1f03F0d1B389a430f",
+      "connectors": {
+        "7887": {
+          "FAST": "0xd3067C88B4CF82e45Ff70074aB612b8a676AC85b"
         }
       }
     }
