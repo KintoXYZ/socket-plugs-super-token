@@ -78,6 +78,39 @@ export const pc: ProjectConstants = {
         },
       },
     },
+    [Tokens.aWSTETH]: {
+      vaultChains: [ChainSlug.MAINNET, ChainSlug.ARBITRUM, ChainSlug.BASE],
+      controllerChains: [ChainSlug.KINTO],
+      hook: {
+        hookType: Hooks.KINTO_HOOK,
+        limitsAndPoolId: {
+          [ChainSlug.MAINNET]: {
+            [IntegrationTypes.fast]: {
+              receivingLimit: "930",
+              sendingLimit: "9300",
+            },
+          },
+          [ChainSlug.KINTO]: {
+            [IntegrationTypes.fast]: {
+              sendingLimit: "930",
+              receivingLimit: "9300",
+            },
+          },
+          [ChainSlug.BASE]: {
+            [IntegrationTypes.fast]: {
+              receivingLimit: "930",
+              sendingLimit: "9300",
+            },
+          },
+          [ChainSlug.ARBITRUM]: {
+            [IntegrationTypes.fast]: {
+              receivingLimit: "930",
+              sendingLimit: "9300",
+            },
+          },
+        },
+      },
+    },
     [Tokens.WETH]: {
       vaultChains: [ChainSlug.MAINNET, ChainSlug.ARBITRUM, ChainSlug.BASE],
       controllerChains: [ChainSlug.KINTO],

@@ -5,7 +5,6 @@ export const tokenName: { [key in Tokens]: string } = {
   [Tokens.USDCE]: "Bridged USD coin",
   [Tokens.WETH]: "Wrapped Ether",
   [Tokens.SNX]: "Synthetix Network Token",
-  [Tokens.WSTETH]: "Wrapped liquid staked Ether 2.0",
   [Tokens.GUARD]: "Guardian",
   [Tokens.ETH]: "Ether",
   [Tokens.EIGEN]: "Eigen",
@@ -52,5 +51,7 @@ export const tokenName: { [key in Tokens]: string } = {
   [Tokens.cbETH] : 'Coinbase Wrapped Staked ETH',
   [Tokens.acbETH] : 'Aave cbETH',
   [Tokens.cbBTC] : 'Coinbase Wrapped BTC',
-  [Tokens.acbBTC] : 'Aave cbBTC'
+  [Tokens.acbBTC] : 'Aave cbBTC',
+  [Tokens.WSTETH]: "Wrapped liquid staked Ether 2.0",
+  [Tokens.aWSTETH]: "Aave wstETH",
 };
