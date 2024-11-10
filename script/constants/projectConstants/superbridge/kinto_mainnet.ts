@@ -624,7 +624,7 @@ export const pc: ProjectConstants = {
         },
       },
     },
-      [Tokens.MKR]: {
+    [Tokens.MKR]: {
       vaultChains: [ChainSlug.MAINNET],
       controllerChains: [ChainSlug.KINTO],
       hook: {
@@ -633,17 +633,17 @@ export const pc: ProjectConstants = {
           [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "1135",
-              sendingLimit: "11350"
-            }
+              sendingLimit: "11350",
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "1135",
-              receivingLimit: "11350"
-            }
+              receivingLimit: "11350",
+            },
           },
-        }
-      }
+        },
+      },
     },
     [Tokens.PAXG]: {
       vaultChains: [ChainSlug.MAINNET],
@@ -654,17 +654,17 @@ export const pc: ProjectConstants = {
           [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "1135",
-              sendingLimit: "11350"
-            }
+              sendingLimit: "11350",
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "1135",
               receivingLimit: "11350",
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     },
     [Tokens.XAUT]: {
       vaultChains: [ChainSlug.MAINNET],
@@ -675,17 +675,17 @@ export const pc: ProjectConstants = {
           [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "1135",
-              sendingLimit: "11350"
-            }
+              sendingLimit: "11350",
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "1135",
-              receivingLimit: "11350"
-            }
+              receivingLimit: "11350",
+            },
           },
-        }
-      }
+        },
+      },
     },
     [Tokens.eUSD]: {
       vaultChains: [ChainSlug.MAINNET],
@@ -697,16 +697,16 @@ export const pc: ProjectConstants = {
             [IntegrationTypes.fast]: {
               receivingLimit: "4000000",
               sendingLimit: "40000000",
-            }
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "40000000",
               sendingLimit: "4000000",
-            }
+            },
           },
-        }
-      }
+        },
+      },
     },
     [Tokens.rsUSDe]: {
       vaultChains: [ChainSlug.MAINNET],
@@ -718,16 +718,16 @@ export const pc: ProjectConstants = {
             [IntegrationTypes.fast]: {
               receivingLimit: "4000000",
               sendingLimit: "40000000",
-            }
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "40000000",
               sendingLimit: "4000000",
-            }
+            },
           },
-        }
-      }
+        },
+      },
     },
     [Tokens.rsENA]: {
       vaultChains: [ChainSlug.MAINNET],
@@ -739,16 +739,16 @@ export const pc: ProjectConstants = {
             [IntegrationTypes.fast]: {
               receivingLimit: "4000000",
               sendingLimit: "40000000",
-            }
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "40000000",
               sendingLimit: "4000000",
-            }
+            },
           },
-        }
-      }
+        },
+      },
     },
     [Tokens.stUSD]: {
       vaultChains: [ChainSlug.ARBITRUM],
@@ -759,17 +759,17 @@ export const pc: ProjectConstants = {
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "4000000",
-              receivingLimit: "40000000"
-            }
+              receivingLimit: "40000000",
+            },
           },
           [ChainSlug.ARBITRUM]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "4000000",
-              sendingLimit: "40000000"
-            }
-          }
-        }
-      }
+              sendingLimit: "40000000",
+            },
+          },
+        },
+      },
     },
     [Tokens.stEUR]: {
       vaultChains: [ChainSlug.ARBITRUM],
@@ -780,17 +780,17 @@ export const pc: ProjectConstants = {
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "4000000",
-              receivingLimit: "40000000"
-            }
+              receivingLimit: "40000000",
+            },
           },
           [ChainSlug.ARBITRUM]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "4000000",
-              sendingLimit: "40000000"
-            }
-          }
-        }
-      }
+              sendingLimit: "40000000",
+            },
+          },
+        },
+      },
     },
     [Tokens.SOL]: {
       vaultChains: [ChainSlug.MAINNET, ChainSlug.ARBITRUM],
@@ -801,23 +801,23 @@ export const pc: ProjectConstants = {
           [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "10000",
-              receivingLimit: "10000"
-            }
+              receivingLimit: "10000",
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "10000",
-              sendingLimit: "10000"
-            }
+              sendingLimit: "10000",
+            },
           },
           [ChainSlug.ARBITRUM]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "10000",
-              sendingLimit: "10000"
-            }
-          }
-        }
-      }
+              sendingLimit: "10000",
+            },
+          },
+        },
+      },
     },
     [Tokens.SPX]: {
       vaultChains: [ChainSlug.MAINNET, ChainSlug.BASE],
@@ -828,23 +828,23 @@ export const pc: ProjectConstants = {
           [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "4000000",
-              sendingLimit: "40000000"
-            }
+              sendingLimit: "40000000",
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "40000000",
-              sendingLimit: "4000000"
-            }
+              sendingLimit: "4000000",
+            },
           },
           [ChainSlug.BASE]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "4000000",
-              sendingLimit: "40000000"
-            }
+              sendingLimit: "40000000",
+            },
           },
-        }
-      }
+        },
+      },
     },
     [Tokens.AAVE]: {
       vaultChains: [ChainSlug.MAINNET, ChainSlug.ARBITRUM],
@@ -855,23 +855,23 @@ export const pc: ProjectConstants = {
           [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "10000",
-              receivingLimit: "10000"
-            }
+              receivingLimit: "10000",
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "10000",
-              sendingLimit: "10000"
-            }
+              sendingLimit: "10000",
+            },
           },
           [ChainSlug.ARBITRUM]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "10000",
-              sendingLimit: "10000"
-            }
-          }
-        }
-      }
+              sendingLimit: "10000",
+            },
+          },
+        },
+      },
     },
     [Tokens.aArbAAVE]: {
       vaultChains: [ChainSlug.MAINNET],
@@ -882,17 +882,17 @@ export const pc: ProjectConstants = {
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "10000",
-              sendingLimit: "10000"
-            }
+              sendingLimit: "10000",
+            },
           },
           [ChainSlug.ARBITRUM]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "10000",
-              sendingLimit: "10000"
-            }
-          }
-        }
-      }
+              sendingLimit: "10000",
+            },
+          },
+        },
+      },
     },
     [Tokens.aEthAAVE]: {
       vaultChains: [ChainSlug.MAINNET],
@@ -903,17 +903,17 @@ export const pc: ProjectConstants = {
           [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "10000",
-              receivingLimit: "10000"
-            }
+              receivingLimit: "10000",
+            },
           },
           [ChainSlug.KINTO]: {
             [IntegrationTypes.fast]: {
               receivingLimit: "10000",
-              sendingLimit: "10000"
-            }
+              sendingLimit: "10000",
+            },
           },
-        }
-      }
+        },
+      },
     },
     [Tokens.WBTC]: {
       vaultChains: [ChainSlug.MAINNET, ChainSlug.ARBITRUM],

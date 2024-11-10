@@ -170,8 +170,6 @@ export async function getRoleMembers(contract: Contract, roleToQuery: string) {
   return members.map(([address, _]) => address);
 }
 
-export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-
 export const execSummary: string[] = [];
 
 export async function execute(
@@ -201,7 +199,10 @@ export async function execute(
       tx = await handleOps({
         kintoWalletAddr: process.env.KINTO_OWNER_ADDRESS,
         userOps: [txRequest],
-        privateKeys: [`0x${process.env.OWNER_SIGNER_KEY}`, process.env.HARDWARE_WALLET == "TREZOR" ? TREZOR : LEDGER],
+        privateKeys: [
+          `0x${process.env.OWNER_SIGNER_KEY}`,
+          process.env.HARDWARE_WALLET == "TREZOR" ? TREZOR : LEDGER,
+        ],
       });
       console.log(
         `o   Sent on chain: ${chain} function: ${method} txHash: ${tx.transactionHash}`

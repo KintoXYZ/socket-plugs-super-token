@@ -705,9 +705,9 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@kinto-utils@https://github.com/KintoXYZ/kinto-utils.git":
+"@kinto-utils@https://github.com/KintoXYZ/kinto-utils.git#3e3cafcc2fca6ecea18bab536fcda4648324c4d9":
   version "1.0.24-test.2"
-  resolved "https://github.com/KintoXYZ/kinto-utils.git#16db2299505e66aab7b36bd2eb98817f377c777d"
+  resolved "https://github.com/KintoXYZ/kinto-utils.git#3e3cafcc2fca6ecea18bab536fcda4648324c4d9"
   dependencies:
     ethers "^5.6.6"
     ethers-v6 "npm:ethers@^6.6.0"
