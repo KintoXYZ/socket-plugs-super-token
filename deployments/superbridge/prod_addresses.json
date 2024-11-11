@@ -1731,4 +1731,32 @@
       }
     }
   },
+  "kinto_mainnet": {
+    "7887": {
+      "aArbUSDC": {
+        "isAppChain": true,
+        "MintableToken": "0xaA06Dc9aF5e959973f09B477f7aC0F6462EAF409",
+        "Controller": "0x1435e2568A93959E703F27Ca459A579edb0825A6",
+        "KintoHook": "0xEDD4A57387Bc068D4dce7A2F0bAF620ef497F829",
+        "connectors": {
+          "42161": {
+            "FAST": "0x4edC754982e367C61FE9769eb5732995e3E15d50"
+          }
+        }
+      }
+    },
+    "42161": {
+      "aArbUSDC": {
+        "isAppChain": false,
+        "NonMintableToken": "0x7CFaDFD5645B50bE87d546f42699d863648251ad",
+        "Vault": "0xF0e641380480E4794F9cBecDA88E7411626174DF",
+        "SenderHook": "0x5A746D1E4AceEDcAeb3dCA86C75c7A57d59A1683",
+        "connectors": {
+          "7887": {
+            "FAST": "0xB1b7BC699cAEcB941e7377065c7CE82039889603"
+          }
+        }
+      }
+    }
+  }
 }
