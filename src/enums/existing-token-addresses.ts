@@ -69,7 +69,7 @@ export const ExistingTokenAddresses: {
     [Tokens.weETH]: "0x35751007a407ca6FEFfE80b3cB397736D2cf4dbe",
     [Tokens.aArbweETH]: "0x8437d7C167dFB82ED4Cb79CD44B7a32A1dd95c77",
     [Tokens.USDC]: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
-    [Tokens.aArbUSDC]: "0x625E7708f30cA75bfd92586e17077590C60eb4cD",
+    [Tokens.aArbUSDC]: "0x7CFaDFD5645B50bE87d546f42699d863648251ad",
     [Tokens.USDT]: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
     [Tokens.aArbUSDT]: "0x6ab707Aca953eDAeFBc4fD23bA73294241490620",
     [Tokens.DAI]: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
