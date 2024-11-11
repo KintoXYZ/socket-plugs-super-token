@@ -11,7 +11,7 @@ import { isSBAppChain } from "../helpers/projectConstants";
 import { getOwner } from "../constants/config";
 import { OWNABLE_ABI } from "../constants/abis/ownable";
 import { ChainSlug } from "@socket.tech/dl-core";
-import { isKinto } from "@kinto-utils/dist/kinto";
+import { isKinto } from "kinto-utils/dist/kinto";
 import { getHookContract } from "../helpers/common";
 import { Tokens } from "../../src/enums";
 import { SBTokenAddresses, STTokenAddresses } from "../../src";

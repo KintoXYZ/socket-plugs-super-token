@@ -47,7 +47,6 @@
     "test": "forge test"
   },
   "dependencies": {
-    "@kinto-utils": "https://github.com/KintoXYZ/kinto-utils.git#3e3cafcc2fca6ecea18bab536fcda4648324c4d9",
     "@socket.tech/dl-core": "https://github.com/KintoXYZ/socket-DL.git",
     "lodash": "^4.17.21",
     "prompts": "^2.4.2"

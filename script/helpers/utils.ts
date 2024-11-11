@@ -17,8 +17,8 @@ import path from "path";
 
 import { getIntegrationTypeConsts } from "./projectConstants";
 import { ProjectType } from "../../src";
-import { handleOps, isKinto } from "@kinto-utils/dist/kinto";
-import { LEDGER, TREZOR } from "@kinto-utils/dist/utils/constants";
+import { handleOps, isKinto } from "kinto-utils/dist/kinto";
+import { LEDGER, TREZOR } from "kinto-utils/dist/utils/constants";
 import { ethers } from "hardhat";
 
 export let allDeploymentPath: string;

@@ -5,8 +5,8 @@ import {
   deployOnKinto,
   isKinto,
   extractArgTypes,
-} from "@kinto-utils/dist/kinto";
-import { LEDGER, TREZOR } from "@kinto-utils/dist/utils/constants";
+} from "kinto-utils/dist/kinto";
+import { LEDGER, TREZOR } from "kinto-utils/dist/utils/constants";
 
 import fs from "fs";
 import { Address } from "hardhat-deploy/dist/types";

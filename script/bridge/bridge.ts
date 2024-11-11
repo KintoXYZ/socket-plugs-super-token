@@ -13,8 +13,8 @@ import { getTokens, isSuperBridge, isSuperToken } from "../constants/config";
 import { checkSendingLimit } from "./utils";
 import { getBridgeContract, getTokenContract } from "../helpers/common";
 import { tokenDecimals } from "../../src/enums";
-import { handleOps, isKinto } from "@kinto-utils/dist/kinto";
-import { TREZOR, LEDGER } from "@kinto-utils/dist/utils/constants";
+import { handleOps, isKinto } from "kinto-utils/dist/kinto";
+import { TREZOR, LEDGER } from "kinto-utils/dist/utils/constants";
 
 const srcChain = ChainSlug.KINTO;
 const dstChain = ChainSlug.ARBITRUM;

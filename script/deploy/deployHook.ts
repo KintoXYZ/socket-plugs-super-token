@@ -3,8 +3,8 @@ import { getOwner, isSuperBridge, isSuperToken } from "../constants/config";
 import { getOrDeploy } from "../helpers";
 import { Hooks, HookContracts, DeployParams } from "../../src";
 import { getBridgeContract } from "../helpers/common";
-import { kintoConfig } from "@kinto-utils/dist/utils/constants";
-import { isKinto } from "@kinto-utils/dist/kinto";
+import { kintoConfig } from "kinto-utils/dist/utils/constants";
+import { isKinto } from "kinto-utils/dist/kinto";
 
 export const deployHookContracts = async (
   useConnnectorPools: boolean,

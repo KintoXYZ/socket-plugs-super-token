@@ -3,4 +3,5 @@ export * from "./utils";
 export * from "./networks";
 export * from "./projectConstants";
 export * from "./addAppContracts";
-export * from "./setAppKey";
+export * from "./updateAppKey";
+export * from "./updateSponsoredContracts";
