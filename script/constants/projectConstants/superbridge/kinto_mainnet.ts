@@ -891,26 +891,5 @@ export const pc: ProjectConstants = {
         },
       },
     },
-    [Tokens.aArbARB]: {
-      vaultChains: [ChainSlug.ARBITRUM],
-      controllerChains: [ChainSlug.KINTO],
-      hook: {
-        hookType: Hooks.KINTO_HOOK,
-        limitsAndPoolId: {
-          [ChainSlug.KINTO]: {
-            [IntegrationTypes.fast]: {
-              receivingLimit: "40000000",
-              sendingLimit: "4000000",
-            },
-          },
-          [ChainSlug.ARBITRUM]: {
-            [IntegrationTypes.fast]: {
-              receivingLimit: "4000000",
-              sendingLimit: "40000000",
-            },
-          },
-        },
-      },
-    },
   },
 };
