@@ -118,7 +118,11 @@ export function getJsonRpcUrl(chain: ChainSlug): string {
   if (!chainRpcKey) throw Error(`Chain ${chain} not found in rpcKey`);
   let rpc = process.env[chainRpcKey];
   if (!rpc) {
-    throw new Error(`RPC not configured for chain ${chain}. Missing env variable : ${rpcKeys(chain)}`);
+    throw new Error(
+      `RPC not configured for chain ${chain}. Missing env variable : ${rpcKeys(
+        chain
+      )}`
+    );
   }
   return rpc;
 }

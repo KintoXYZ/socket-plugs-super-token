@@ -8,3 +8,5 @@ export const ChainSlugToProject: { [chainSlug in ChainSlug]?: Project } = {
   [ChainSlug.LYRA]: Project.LYRA,
   [ChainSlug.SX_NETWORK_TESTNET]: Project.SX_NETWORK_TESTNET,
 };
+
+export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";

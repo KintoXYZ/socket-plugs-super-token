@@ -5,8 +5,8 @@ import {
   deployOnKinto,
   isKinto,
   extractArgTypes,
-} from "@kinto-utils/dist/kinto";
-import { LEDGER, TREZOR } from "@kinto-utils/dist/utils/constants";
+} from "kinto-utils/dist/kinto";
+import { LEDGER, TREZOR } from "kinto-utils/dist/utils/constants";
 
 import fs from "fs";
 import { Address } from "hardhat-deploy/dist/types";
@@ -162,7 +162,10 @@ export async function deployContractWithArgs(
         abi,
         args,
         argTypes: await extractArgTypes(abi),
-        privateKeys: [`0x${process.env.OWNER_SIGNER_KEY}`, process.env.HARDWARE_WALLET == "TREZOR" ? TREZOR : LEDGER],
+        privateKeys: [
+          `0x${process.env.OWNER_SIGNER_KEY}`,
+          process.env.HARDWARE_WALLET == "TREZOR" ? TREZOR : LEDGER,
+        ],
       });
       contract = await getInstance(contractName, contractAddr);
     } else {

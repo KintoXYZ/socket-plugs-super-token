@@ -51,8 +51,8 @@ import {
 import { configureHooks } from "./configureHook";
 import { Tokens } from "../../src/enums";
 import { ethers } from "hardhat";
-import { whitelistApp } from "@kinto-utils/dist/kinto";
-import { LEDGER, TREZOR } from "@kinto-utils/dist/utils/constants";
+import { whitelistApp } from "kinto-utils/dist/kinto";
+import { LEDGER, TREZOR } from "kinto-utils/dist/utils/constants";
 
 let projectType: ProjectType;
 let pc: { [token: string]: TokenConstants } = {};
@@ -153,7 +153,10 @@ export const configure = async (allAddresses: SBAddresses | STAddresses) => {
 
             // whitelist token on kinto wallet
             const kintoWalletAddr = process.env.KINTO_OWNER_ADDRESS;
-            const privateKeys = [`0x${process.env.OWNER_SIGNER_KEY}`, process.env.HARDWARE_WALLET == "TREZOR" ? TREZOR : LEDGER];
+            const privateKeys = [
+              `0x${process.env.OWNER_SIGNER_KEY}`,
+              process.env.HARDWARE_WALLET == "TREZOR" ? TREZOR : LEDGER,
+            ];
             await whitelistApp(
               kintoWalletAddr,
               tokenInstance.address,
