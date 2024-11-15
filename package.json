@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@socket.tech/dl-core": "https://github.com/KintoXYZ/socket-DL.git",
+    "kinto-utils": "https://github.com/KintoXYZ/kinto-utils#c86cd2c46043a37132ba7d250e50f7dbb3019cbd",
     "lodash": "^4.17.21",
     "prompts": "^2.4.2"
   }
