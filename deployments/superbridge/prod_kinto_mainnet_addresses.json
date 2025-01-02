@@ -663,6 +663,9 @@
         "1": {
           "FAST": "0x8C54D958199339ABD2CB0f9EE37aD1dcbFCD9078"
         },
+        "8453": {
+          "FAST": "0x983841bbC5b2f4faBA7CE159b364eF50986688F9"
+        },
         "42161": {
           "FAST": "0xD61Ec203867b56fD0714A44AB0E5C91B5a8a9516"
         }
@@ -1027,6 +1030,17 @@
           "FAST": "0xCc52C292740275f483A711234fF4E651271A6c5D"
         }
       }
+    },
+    "SOL": {
+      "isAppChain": false,
+      "NonMintableToken": "0x1C61629598e4a901136a81BC138E5828dc150d67",
+      "Vault": "0x4537dd4a881f6114a32b2EdEFA012CD6E71dAeDb",
+      "SenderHook": "0xC52692470D7079F1c589A81061F019865cceECFF",
+      "connectors": {
+        "7887": {
+          "FAST": "0x635DE2463123C7a578D1b984E5a761a16Ef09329"
+        }
+      }
     }
   },
   "42161": {
@@ -1236,6 +1250,17 @@
       "connectors": {
         "7887": {
           "FAST": "0xCdE73c5703bbDa81746f1C98C396af00E80fc480"
+        }
+      }
+    },
+    "SOL": {
+      "isAppChain": false,
+      "NonMintableToken": "0x2bcC6D6CdBbDC0a4071e48bb3B969b06B3330c07",
+      "Vault": "0x0B1a2579311AB511f508cfe075473cdAb499534D",
+      "SenderHook": "0xA99aB8cc2104D34d07cc7C4C7561c6c8144eB5f5",
+      "connectors": {
+        "7887": {
+          "FAST": "0xe7a45449AD1A5F545DDd76fdf777DfE7B113Ad68"
         }
       }
     }

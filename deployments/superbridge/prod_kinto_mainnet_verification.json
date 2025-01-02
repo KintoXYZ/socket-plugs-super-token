@@ -1431,6 +1431,16 @@
   ],
   "7887": [
     [
+      "0x983841bbC5b2f4faBA7CE159b364eF50986688F9",
+      "ConnectorPlug",
+      "contracts/ConnectorPlug.sol",
+      [
+        "0xa968C2771d5E984979589ef8f6fA59D5818a208F",
+        "0x3e9727470C66B1e77034590926CDe0242B5A3dCc",
+        8453
+      ]
+    ],
+    [
       "0x1a20deed3e0c61f3d6CD11Ee30b61C622F6009F0",
       "ConnectorPlug",
       "contracts/ConnectorPlug.sol",
@@ -3789,6 +3799,34 @@
   ],
   "8453": [
     [
+      "0x635DE2463123C7a578D1b984E5a761a16Ef09329",
+      "ConnectorPlug",
+      "contracts/ConnectorPlug.sol",
+      [
+        "0x4537dd4a881f6114a32b2EdEFA012CD6E71dAeDb",
+        "0x12E6e58864cE4402cF2B4B8a8E9c75eAD7280156",
+        7887
+      ]
+    ],
+    [
+      "0xC52692470D7079F1c589A81061F019865cceECFF",
+      "SenderHook",
+      "contracts/hooks/SenderHook.sol",
+      [
+        "0x660ad4B5A74130a4796B4d54BC6750Ae93C86e6c",
+        "0x4537dd4a881f6114a32b2EdEFA012CD6E71dAeDb",
+        false
+      ]
+    ],
+    [
+      "0x4537dd4a881f6114a32b2EdEFA012CD6E71dAeDb",
+      "Vault",
+      "contracts/bridge/Vault.sol",
+      [
+        "0x1C61629598e4a901136a81BC138E5828dc150d67"
+      ]
+    ],
+    [
       "0xCc52C292740275f483A711234fF4E651271A6c5D",
       "ConnectorPlug",
       "contracts/ConnectorPlug.sol",
@@ -4286,6 +4324,34 @@
     ]
   ],
   "42161": [
+    [
+      "0xe7a45449AD1A5F545DDd76fdf777DfE7B113Ad68",
+      "ConnectorPlug",
+      "contracts/ConnectorPlug.sol",
+      [
+        "0x0B1a2579311AB511f508cfe075473cdAb499534D",
+        "0x37cc674582049b579571E2fFd890a4d99355f6Ba",
+        7887
+      ]
+    ],
+    [
+      "0xA99aB8cc2104D34d07cc7C4C7561c6c8144eB5f5",
+      "SenderHook",
+      "contracts/hooks/SenderHook.sol",
+      [
+        "0x660ad4B5A74130a4796B4d54BC6750Ae93C86e6c",
+        "0x0B1a2579311AB511f508cfe075473cdAb499534D",
+        false
+      ]
+    ],
+    [
+      "0x0B1a2579311AB511f508cfe075473cdAb499534D",
+      "Vault",
+      "contracts/bridge/Vault.sol",
+      [
+        "0x2bcC6D6CdBbDC0a4071e48bb3B969b06B3330c07"
+      ]
+    ],
     [
       "0xCdE73c5703bbDa81746f1C98C396af00E80fc480",
       "ConnectorPlug",
