@@ -39,5 +39,11 @@ export const tokenDecimals: { [key in Tokens]: number } = {
   [Tokens.rETH]: 18,
   [Tokens.cbETH]: 18,
   [Tokens.cbBTC]: 8,
-  [Tokens.WSTETH]: 18
+  [Tokens.WSTETH]: 18,
+  [Tokens.USUAL]: 18,
+  [Tokens.LDO]: 18,
+  [Tokens.VIRTUAL]: 18,
+  [Tokens.ONDO]: 18,
+  [Tokens.PENDLE]: 18,
+  [Tokens.CRV]: 18
 };
