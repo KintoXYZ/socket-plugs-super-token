@@ -1140,17 +1140,6 @@
         }
       }
     },
-    "SOL": {
-      "isAppChain": false,
-      "NonMintableToken": "0xb74da9fe2f96b9e0a5f4a3cf0b92dd2bec617124",
-      "Vault": "0x830dE29a70D4665329919D5f7E63BD44CBB22dc7",
-      "SenderHook": "0x01132715A4457e15FB938c1BA323B80e6443Fc00",
-      "connectors": {
-        "7887": {
-          "FAST": "0xcc1605E68B71c82906A08f9de12f39A9c68f7441"
-        }
-      }
-    },
     "AAVE": {
       "isAppChain": false,
       "NonMintableToken": "0xba5DdD1f9d7F570dc94a51479a000E3BCE967196",
