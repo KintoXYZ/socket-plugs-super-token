@@ -37,5 +37,11 @@ export enum Tokens {
   rETH = "rETH",
   cbETH = "cbETH",
   cbBTC = "cbBTC",
-  WSTETH = "wstETH"
+  WSTETH = "wstETH",
+  USUAL = "USUAL",
+  LDO = "LDO",
+  VIRTUAL = "VIRTUAL",
+  ONDO = "ONDO",
+  PENDLE = "PENDLE",
+  CRV = "CRV"
 }

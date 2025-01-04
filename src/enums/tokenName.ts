@@ -40,4 +40,10 @@ export const tokenName: { [key in Tokens]: string } = {
   [Tokens.cbETH]: "Coinbase Wrapped Staked ETH",
   [Tokens.cbBTC]: "Coinbase Wrapped BTC",
   [Tokens.WSTETH]: "Wrapped liquid staked Ether 2.0",
+  [Tokens.USUAL]: "USUAL",
+  [Tokens.LDO]: "Lido DAO Token",
+  [Tokens.VIRTUAL]: "Virtual Protocol",
+  [Tokens.ONDO]: "Ondo",
+  [Tokens.PENDLE]: "Pendle",
+  [Tokens.CRV]: "Curve DAO Token"
 };

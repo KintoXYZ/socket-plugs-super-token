@@ -39,5 +39,11 @@ export const tokenSymbol: { [key in Tokens]: string } = {
   [Tokens.rETH]: "rETH",
   [Tokens.cbETH]: "cbETH",
   [Tokens.cbBTC]: "cbBTC",
-  [Tokens.WSTETH]: "wstETH"
+  [Tokens.WSTETH]: "wstETH",
+  [Tokens.USUAL]: "USUAL",
+  [Tokens.LDO]: "LDO",
+  [Tokens.VIRTUAL]: "VIRTUAL",
+  [Tokens.ONDO]: "ONDO",
+  [Tokens.PENDLE]: "PENDLE",
+  [Tokens.CRV]: "CRV"
 };
