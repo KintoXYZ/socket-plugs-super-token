@@ -13,6 +13,11 @@ interface IKintoFactory {
     function walletTs(address) external view returns (uint256);
 }
 
+interface IBridgerL2 {
+    function srcPreHookCall(SrcPreHookCallParams memory params_) external;
+    function dstPreHookCall(DstPreHookCallParams memory params_) external;
+}
+
 interface IKintoWallet {
     function isFunderWhitelisted(address) external view returns (bool);
     function owners(uint256) external view returns (address);
@@ -23,57 +28,23 @@ interface IKintoWallet {
  * @notice meant to be deployed only Kinto. Inherits from LimitHook.
  */
 contract KintoHook is LimitHook {
-    IKintoID public immutable kintoID;
-    IKintoFactory public immutable kintoFactory;
-
-    // addresses that can receive assets while being not wallets on dstPreHookCall
-    mapping(address => bool) public receiveAllowlist;
-
-    // addresses that can bypass funder whitelisted check on dstPreHookCall
-    mapping(address => bool) public senderAllowlist;
-
-    error InvalidSender(address sender);
-    error InvalidReceiver(address sender);
-    error KYCRequired();
-    error SenderNotAllowed(address sender);
-
-    event ReceiverSet(address indexed receiver, bool allowed);
-    event SenderSet(address indexed sender, bool allowed);
+    IBridgerL2 public immutable bridgerL2;
 
     /**
      * @notice Constructor for creating a Kinto Hook
      * @param owner_ Owner of this contract.
      * @param controller_ Controller of this contract.
      * @param useControllerPools_ Whether to use controller pools.
-     * @param kintoID_ KintoID contract address.
-     * @param kintoFactory_ KintoFactory contract address.
+     * @param bridgerL2_ BridgerL2 contract address.
      */
     constructor(
         address owner_,
         address controller_,
         bool useControllerPools_,
-        address kintoID_,
-        address kintoFactory_
+        address bridgerL2_
     ) LimitHook(owner_, controller_, useControllerPools_) {
         hookType = keccak256("KINTO");
-        kintoID = IKintoID(kintoID_);
-        kintoFactory = IKintoFactory(kintoFactory_);
-    }
-
-    /*
-     * @notice Sets a receiver to be allowed (or not) to receive funds to an Kinto address bypassing checks
-     */
-    function setReceiver(address receiver, bool allowed) external onlyOwner {
-        receiveAllowlist[receiver] = allowed;
-        emit ReceiverSet(receiver, allowed);
-    }
-
-    /*
-     * @notice Sets a sender to be allowed (or not) to send funds to a Kinto wallet bypassing Kinto checks
-     */
-    function setSender(address sender, bool allowed) external onlyOwner {
-        senderAllowlist[sender] = allowed;
-        emit SenderSet(sender, allowed);
+        bridgerL2 = IBridgerL2(bridgerL2_);
     }
 
     /**
@@ -88,12 +59,7 @@ contract KintoHook is LimitHook {
         isVaultOrController
         returns (TransferInfo memory transferInfo, bytes memory postHookData)
     {
-        address sender = params_.msgSender;
-        if (kintoFactory.walletTs(sender) == 0) revert InvalidSender(sender);
-        if (!kintoID.isKYC(IKintoWallet(sender).owners(0))) {
-            revert KYCRequired();
-        }
-
+        bridgerL2.srcPreHookCall(params_);
         return super.srcPreHookCall(params_);
     }
 
@@ -119,25 +85,7 @@ contract KintoHook is LimitHook {
         isVaultOrController
         returns (bytes memory postHookData, TransferInfo memory transferInfo)
     {
-        address receiver = params_.transferInfo.receiver;
-        address msgSender = abi.decode(params_.transferInfo.data, (address));
-
-        if (!receiveAllowlist[receiver] || !senderAllowlist[msgSender]) {
-            if (kintoFactory.walletTs(receiver) == 0) {
-                revert InvalidReceiver(receiver);
-            }
-
-            if (!kintoID.isKYC(IKintoWallet(receiver).owners(0))) {
-                revert KYCRequired();
-            }
-
-            if (!senderAllowlist[msgSender]) {
-                if (!IKintoWallet(receiver).isFunderWhitelisted(msgSender)) {
-                    revert SenderNotAllowed(msgSender);
-                }
-            }
-        }
-
+        bridgerL2.dstPreHookCall(params_);
         return super.dstPreHookCall(params_);
     }
 
