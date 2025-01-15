@@ -62,7 +62,7 @@ contract TestKintoHook is Test {
 
         _socket = address(uint160(_c++));
         controller__ = address(uint160(_c++));
-        bridgerL2 = 0xf369f78E3A0492CC4e96a90dae0728A38498e9c7;
+        bridgerL2 = 0x26181Dfc530d96523350e895180b09BAf3d816a0;
         kintoWallet__ = 0x2e2B1c42E38f5af81771e65D87729E57ABD1337a;
         kintoWalletSigner__ = 0x660ad4B5A74130a4796B4d54BC6750Ae93C86e6c;
         kycProvider__ = 0x6E31039abF8d248aBed57E307C9E1b7530c269E4;
