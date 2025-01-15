@@ -56,7 +56,7 @@ contract TestKintoHook is Test {
     bytes32 constant LIMIT_UPDATER_ROLE = keccak256("LIMIT_UPDATER_ROLE");
 
     function setUp() external {
-        uint256 kintoFork = vm.createSelectFork("kinto");
+        vm.createSelectFork("kinto");
 
         vm.startPrank(_admin);
 
@@ -138,5 +138,422 @@ contract TestKintoHook is Test {
             )
         );
         kintoHook__.updateLimitParams(u);
+    }
+
+    function testsrcPreHookCallSender() external {
+        _setLimits();
+
+        uint256 withdrawAmount = 10 ether;
+        uint256 dealAmount = 10 ether;
+
+        deal(address(_token), _raju, dealAmount);
+        deal(_raju, _fees);
+
+        vm.startPrank(_admin);
+        vm.expectRevert(NotAuthorized.selector);
+        kintoHook__.srcPreHookCall(
+            SrcPreHookCallParams(
+                _otherConnector,
+                address(_raju),
+                TransferInfo(_raju, withdrawAmount, bytes(""))
+            )
+        );
+        vm.stopPrank();
+    }
+
+    function testsrcPreHookCallSiblingNotSupported() external {
+        _setLimits();
+
+        uint256 withdrawAmount = 10 ether;
+        uint256 dealAmount = 10 ether;
+        address sender = kintoWallet__;
+        address receiver = kintoWalletSigner__;
+
+        deal(address(_token), sender, dealAmount);
+        deal(sender, _fees);
+
+        vm.startPrank(controller__);
+
+        vm.expectRevert(SiblingNotSupported.selector);
+        kintoHook__.srcPreHookCall(
+            SrcPreHookCallParams(
+                _otherConnector,
+                address(sender),
+                TransferInfo(receiver, withdrawAmount, bytes(""))
+            )
+        );
+        vm.stopPrank();
+    }
+
+    function testsrcPreHookCall() external {
+        _setLimits();
+        uint256 withdrawAmount = 10 ether;
+        address sender = kintoWallet__;
+        address receiver = kintoWalletSigner__;
+
+        uint256 burnLimitBefore = kintoHook__.getCurrentSendingLimit(
+            _connector1
+        );
+
+        assertTrue(
+            withdrawAmount <= kintoHook__.getCurrentSendingLimit(_connector1),
+            "too big withdraw"
+        );
+
+        bytes memory payload = abi.encode(receiver, withdrawAmount);
+
+        vm.startPrank(controller__);
+        (
+            TransferInfo memory transferInfo,
+            bytes memory postSrcHookData
+        ) = kintoHook__.srcPreHookCall(
+                SrcPreHookCallParams(
+                    _connector1,
+                    address(sender),
+                    TransferInfo(kintoWalletSigner__, withdrawAmount, payload)
+                )
+            );
+        vm.stopPrank();
+
+        uint256 burnLimitAfter = kintoHook__.getCurrentSendingLimit(
+            _connector1
+        );
+
+        assertEq(
+            burnLimitAfter,
+            burnLimitBefore - transferInfo.amount,
+            "burn limit sus"
+        );
+        assertEq(receiver, transferInfo.receiver, "receiver incorrect");
+        assertEq(withdrawAmount, transferInfo.amount, "amount incorrect");
+        assertEq(transferInfo.data, payload, "extra data incorrect");
+    }
+
+    function testsrcPostHookCall() external {
+        uint256 amount = 10 ether;
+        bytes memory payload = abi.encode(_raju, amount);
+        vm.startPrank(controller__);
+        TransferInfo memory transferInfo = kintoHook__.srcPostHookCall(
+            SrcPostHookCallParams(
+                _connector1,
+                payload,
+                bytes(""),
+                TransferInfo(_raju, amount, payload)
+            )
+        );
+        assertEq(transferInfo.data, payload, "extra data incorrect");
+    }
+
+    function testFullBurnLimitReplenish() external {
+        _setLimits();
+
+        uint256 withdrawAmount = 30 ether;
+        uint256 time = 100;
+        address sender = kintoWallet__;
+        address receiver = kintoWalletSigner__;
+
+        bytes memory payload = abi.encode(sender, withdrawAmount);
+        vm.startPrank(controller__);
+
+        kintoHook__.srcPreHookCall(
+            SrcPreHookCallParams(
+                _connector1,
+                address(sender),
+                TransferInfo(receiver, withdrawAmount, payload)
+            )
+        );
+        vm.stopPrank();
+
+        uint256 burnLimitBefore = kintoHook__.getCurrentSendingLimit(
+            _connector1
+        );
+
+        assertTrue(burnLimitBefore < _burnMaxLimit, "full limit avail");
+        assertTrue(
+            burnLimitBefore + time * _burnRate > _burnMaxLimit,
+            "not enough time"
+        );
+
+        skip(time);
+
+        uint256 burnLimitAfter = kintoHook__.getCurrentSendingLimit(
+            _connector1
+        );
+        assertEq(burnLimitAfter, _burnMaxLimit, "burn limit sus");
+    }
+
+    function testFullConsumeDstCall() external {
+        _setLimits();
+        uint256 depositAmount = 2 ether;
+        address sender = kintoWalletSigner__; // original sender from vault chain
+        address receiver = kintoWallet__;
+
+        vm.startPrank(controller__);
+        (
+            bytes memory postHookData,
+            TransferInfo memory transferInfo
+        ) = kintoHook__.dstPreHookCall(
+                DstPreHookCallParams(
+                    _connector1,
+                    bytes(""),
+                    TransferInfo(receiver, depositAmount, abi.encode(sender))
+                )
+            );
+
+        assertEq(transferInfo.amount, depositAmount, "depositAmount sus");
+        assertEq(transferInfo.receiver, receiver, "raju address sus");
+
+        assertEq(
+            postHookData,
+            abi.encode(depositAmount, 0),
+            "postHookData sus"
+        );
+        vm.startPrank(controller__);
+        CacheData memory cacheData = kintoHook__.dstPostHookCall(
+            DstPostHookCallParams(
+                _connector1,
+                _messageId,
+                bytes(""),
+                postHookData,
+                TransferInfo(receiver, depositAmount, bytes(""))
+            )
+        );
+
+        assertEq(cacheData.identifierCache, bytes(""), "identifierCache sus");
+        assertEq(cacheData.connectorCache, abi.encode(0), "connectorCache sus");
+    }
+
+    function testPartConsumeDstCall() external {
+        _setLimits();
+        uint256 depositAmount = 110 ether;
+        address sender = kintoWalletSigner__; // original sender from vault chain
+        address receiver = kintoWallet__;
+
+        vm.startPrank(controller__);
+        (
+            bytes memory postHookData,
+            TransferInfo memory transferInfo
+        ) = kintoHook__.dstPreHookCall(
+                DstPreHookCallParams(
+                    _connector1,
+                    bytes(""),
+                    TransferInfo(receiver, depositAmount, abi.encode(sender))
+                )
+            );
+        assertTrue(depositAmount > _mintMaxLimit, "deposit amount not enough");
+        assertEq(transferInfo.amount, _mintMaxLimit, "depositAmount sus");
+
+        uint256 pendingAmount = depositAmount - _mintMaxLimit;
+        assertEq(
+            postHookData,
+            abi.encode(_mintMaxLimit, pendingAmount),
+            "postHookData sus"
+        );
+        vm.startPrank(controller__);
+        CacheData memory cacheData = kintoHook__.dstPostHookCall(
+            DstPostHookCallParams(
+                _connector1,
+                _messageId,
+                bytes(""),
+                postHookData,
+                TransferInfo(receiver, depositAmount, bytes(""))
+            )
+        );
+
+        assertEq(
+            cacheData.identifierCache,
+            abi.encode(receiver, pendingAmount, _connector1),
+            "identifierCache sus"
+        );
+        assertEq(
+            cacheData.connectorCache,
+            abi.encode(pendingAmount),
+            "connectorCache sus"
+        );
+    }
+
+    function testPartConsumeDstCallConnectorCache() external {
+        _setLimits();
+        uint256 depositAmount = 110 ether;
+        uint256 pendingAmount = depositAmount - _mintMaxLimit;
+        uint256 connectorPendingAmountBefore = 10 ether;
+        address sender = kintoWalletSigner__; // original sender from vault chain
+        address receiver = kintoWallet__;
+
+        bytes memory connectorCacheBefore = abi.encode(
+            connectorPendingAmountBefore
+        );
+        vm.startPrank(controller__);
+        (
+            bytes memory postHookData,
+            TransferInfo memory transferInfo
+        ) = kintoHook__.dstPreHookCall(
+                DstPreHookCallParams(
+                    _connector1,
+                    bytes(""),
+                    TransferInfo(receiver, depositAmount, abi.encode(sender))
+                )
+            );
+
+        CacheData memory cacheData = kintoHook__.dstPostHookCall(
+            DstPostHookCallParams(
+                _connector1,
+                _messageId,
+                connectorCacheBefore,
+                postHookData,
+                TransferInfo(receiver, depositAmount, abi.encode(sender))
+            )
+        );
+        assertEq(
+            cacheData.connectorCache,
+            abi.encode(pendingAmount + connectorPendingAmountBefore),
+            "connectorCache sus"
+        );
+    }
+
+    function testFullConsumeRetryHookCall() external {
+        _setLimits();
+        uint256 pendingAmount = 2 ether;
+        address sender = kintoWalletSigner__; // original sender from vault chain
+        address receiver = kintoWallet__;
+
+        vm.startPrank(controller__);
+        (
+            bytes memory postRetryHookData,
+            TransferInfo memory transferInfo
+        ) = kintoHook__.preRetryHook(
+                PreRetryHookCallParams(
+                    _connector1,
+                    CacheData(
+                        abi.encode(receiver, pendingAmount, _connector1),
+                        abi.encode(pendingAmount)
+                    )
+                )
+            );
+
+        assertEq(
+            postRetryHookData,
+            abi.encode(receiver, pendingAmount, 0),
+            "postHookData sus"
+        );
+        assertEq(transferInfo.receiver, receiver, "raju address sus");
+        assertEq(transferInfo.amount, pendingAmount, "pending amount sus");
+        assertEq(transferInfo.data, bytes(""), "raju address sus");
+
+        // test 0 connector pendingAmount afterwards
+        CacheData memory cacheData = kintoHook__.postRetryHook(
+            PostRetryHookCallParams(
+                _connector1,
+                _messageId,
+                postRetryHookData,
+                CacheData(
+                    abi.encode(receiver, pendingAmount, _connector1),
+                    abi.encode(pendingAmount)
+                )
+            )
+        );
+
+        assertEq(cacheData.identifierCache, bytes(""), "identifierCache sus");
+        assertEq(cacheData.connectorCache, abi.encode(0), "connectorCache sus");
+
+        // test non 0 connector pendingAmount afterwards
+        cacheData = kintoHook__.postRetryHook(
+            PostRetryHookCallParams(
+                _connector1,
+                _messageId,
+                postRetryHookData,
+                CacheData(
+                    abi.encode(receiver, pendingAmount, _connector1),
+                    abi.encode(pendingAmount + 10 ether)
+                )
+            )
+        );
+
+        assertEq(cacheData.identifierCache, bytes(""), "identifierCache sus");
+        assertEq(
+            cacheData.connectorCache,
+            abi.encode(10 ether),
+            "connectorCache sus"
+        );
+    }
+
+    function testPartConsumeRetryHookCall() external {
+        _setLimits();
+        uint256 pendingAmount = 200 ether;
+        uint256 connectorAlreadyPendingAmount = 100 ether;
+        vm.startPrank(controller__);
+        (
+            bytes memory postRetryHookData,
+            TransferInfo memory transferInfo
+        ) = kintoHook__.preRetryHook(
+                PreRetryHookCallParams(
+                    _connector1,
+                    CacheData(
+                        abi.encode(_raju, pendingAmount, _connector1),
+                        abi.encode(
+                            pendingAmount + connectorAlreadyPendingAmount
+                        )
+                    )
+                )
+            );
+
+        assertEq(
+            postRetryHookData,
+            abi.encode(_raju, _mintMaxLimit, pendingAmount - _mintMaxLimit),
+            "postHookData sus"
+        );
+        assertEq(transferInfo.receiver, _raju, "raju address sus");
+        assertEq(transferInfo.amount, _mintMaxLimit, "pending amount sus");
+        assertEq(transferInfo.data, bytes(""), "raju address sus");
+
+        // test 0 connector pendingAmount before
+        CacheData memory cacheData = kintoHook__.postRetryHook(
+            PostRetryHookCallParams(
+                _connector1,
+                _messageId,
+                postRetryHookData,
+                CacheData(
+                    abi.encode(_raju, pendingAmount, _connector1),
+                    abi.encode(pendingAmount)
+                )
+            )
+        );
+
+        assertEq(
+            cacheData.identifierCache,
+            abi.encode(_raju, pendingAmount - _mintMaxLimit, _connector1),
+            "identifierCache sus"
+        );
+        assertEq(
+            cacheData.connectorCache,
+            abi.encode(pendingAmount - _mintMaxLimit),
+            "connectorCache sus"
+        );
+
+        // test non 0 connector pendingAmount before
+        cacheData = kintoHook__.postRetryHook(
+            PostRetryHookCallParams(
+                _connector1,
+                _messageId,
+                postRetryHookData,
+                CacheData(
+                    abi.encode(_raju, pendingAmount),
+                    abi.encode(pendingAmount + connectorAlreadyPendingAmount)
+                )
+            )
+        );
+
+        assertEq(
+            cacheData.identifierCache,
+            abi.encode(_raju, pendingAmount - _mintMaxLimit, _connector1),
+            "identifierCache sus"
+        );
+        assertEq(
+            cacheData.connectorCache,
+            abi.encode(
+                pendingAmount + connectorAlreadyPendingAmount - _mintMaxLimit
+            ),
+            "connectorCache sus"
+        );
     }
 }
