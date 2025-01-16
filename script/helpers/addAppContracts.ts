@@ -12,6 +12,8 @@ import { kintoConfig, LEDGER, TREZOR } from "kinto-utils/dist/utils/constants";
 import { addAppContracts } from "kinto-utils/dist/kinto";
 import { Tokens } from "../../src/enums";
 
+const BATCH_SIZE = 25;
+
 async function addContracts(
   addresses: SBAddresses | STAddresses
 ): Promise<void> {
@@ -94,14 +96,26 @@ async function addContracts(
   }
 
   try {
-    // Register all contracts with the app registry using the utility function
-    await addAppContracts(
-      kintoWalletAddr,
-      kintoConfig[chainIdStr].contracts.socketDL.address,
-      contractsToAdd,
-      privateKeys,
-      chainIdStr
-    );
+    // Split contracts into batches of BATCH_SIZE
+    for (let i = 0; i < contractsToAdd.length; i += BATCH_SIZE) {
+      const batch = contractsToAdd.slice(i, i + BATCH_SIZE);
+      console.log(
+        `Processing batch ${i / BATCH_SIZE + 1} with ${batch.length} contracts`
+      );
+
+      // Register batch of contracts with the app registry
+      await addAppContracts(
+        kintoWalletAddr,
+        kintoConfig[chainIdStr].contracts.socketDL.address,
+        batch,
+        privateKeys,
+        chainIdStr
+      );
+
+      console.log(`Successfully registered batch ${i / BATCH_SIZE + 1}`);
+    }
+
+    console.log("Successfully registered all contract batches");
   } catch (error) {
     console.error(`Error registering contracts:`, error);
     throw error;

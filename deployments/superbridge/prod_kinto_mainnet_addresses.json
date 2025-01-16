@@ -429,7 +429,8 @@
         "42161": {
           "FAST": "0x1E22A61BbE261C892304D9009ED643d2050a675b"
         }
-      }
+      },
+      "KintoHook": "0xed4Ba6c96615aa25888C43968B8c029D18562CE5"
     },
     "WETH": {
       "isAppChain": true,
@@ -445,7 +446,8 @@
         "42161": {
           "FAST": "0x9Ba7655915e3a091cA533A076D0E51830453aCe2"
         }
-      }
+      },
+      "KintoHook": "0x5eB67F062475442F7E0F06EEd3d41490B5363948"
     },
     "USDC": {
       "isAppChain": true,
@@ -461,7 +463,8 @@
         "42161": {
           "FAST": "0xff6161A25e59B024A9c91ed16eFc4ADFA600E345"
         }
-      }
+      },
+      "KintoHook": "0xbA07EAc2Bc1201A397e0f4F3057B986C95e9330e"
     },
     "ENA": {
       "isAppChain": true,
@@ -471,7 +474,8 @@
         "1": {
           "FAST": "0x73ac08dC2d8ab3D7D4fFB94D2EAEB5cADa2e44bB"
         }
-      }
+      },
+      "KintoHook": "0xf0197a84Efb3ba50F8A682E9b643Aa48C51c4A1B"
     },
     "USDe": {
       "isAppChain": true,
@@ -484,7 +488,8 @@
         "42161": {
           "FAST": "0x308FfeB31Ef41005A9AD2b6d30bD1aA98E64F045"
         }
-      }
+      },
+      "KintoHook": "0x72299291aADa296750360a2E27de36c72F5bd8CC"
     },
     "EIGEN": {
       "isAppChain": true,
@@ -494,7 +499,8 @@
         "1": {
           "FAST": "0x1439d61bc78D7Ea02e1346750B2Fb53BA2d5A8CC"
         }
-      }
+      },
+      "KintoHook": "0x4dC0ed839306f059Fa06665033c244100DbaEcc3"
     },
     "eETH": {
       "isAppChain": true,
@@ -505,6 +511,7 @@
           "FAST": "0x79662e780726Be5E4673902628b0395D5AE1B95c"
         }
       },
+      "KintoHook": "0x1f5d94695fD30721b0F852509EDC1a9e0873D63b"
     },
     "sDAI": {
       "isAppChain": true,
@@ -514,7 +521,8 @@
         "1": {
           "FAST": "0x2578D0E228ecb205AF54e68ac853f39c8a03bD4c"
         }
-      }
+      },
+      "KintoHook": "0xdcc8c4f8Ba66ec5D534D6557F0E89860E65E713d"
     },
     "sUSDe": {
       "isAppChain": true,
@@ -524,7 +532,8 @@
         "1": {
           "FAST": "0x8fEAb0b3050320075c8a02DD8F0e404bc7CFfb00"
         }
-      }
+      },
+      "KintoHook": "0xC9eFC25D82edfFcAB49bCDAcc0A03488DDC83093"
     },
     "wUSDM": {
       "isAppChain": true,
@@ -537,7 +546,8 @@
         "42161": {
           "FAST": "0xf8308F839e0C7407749bFF164b4573B5eAb87Cc3"
         }
-      }
+      },
+      "KintoHook": "0x94D7C16764f27A872B581a1C53d96790d8a5C3DF"
     },
     "weETH": {
       "isAppChain": true,
@@ -553,7 +563,8 @@
         "42161": {
           "FAST": "0xd8cB5d619eC0E2AC1DD3850974AaA75A9A480e8f"
         }
-      }
+      },
+      "KintoHook": "0xdFd345c506703723FE4e63A7BCF95a33Fed8532d"
     },
     "ETHFI": {
       "isAppChain": true,
@@ -563,7 +574,8 @@
         "1": {
           "FAST": "0xDD82eaC8654b14fFdc63Fc9852b5eBAbe132e0F3"
         }
-      }
+      },
+      "KintoHook": "0x278183e3633D31ddA8fdAa115B0dc7e7459A4112"
     },
     "SolvBTC": {
       "isAppChain": true,
@@ -573,7 +585,8 @@
         "42161": {
           "FAST": "0x7DBf4Ff0700DfE20af554aeD0c3E1b4099CdAbaa"
         }
-      }
+      },
+      "KintoHook": "0x519d36b7f01cD291E37F9776eC4D70c43BF9617f"
     },
     "KINTO": {
       "isAppChain": true,
@@ -583,7 +596,8 @@
         "1": {
           "FAST": "0x0bf0dcEfa8d7E31d18cEf882A74499FA277F088C"
         }
-      }
+      },
+      "KintoHook": "0x228993DDDeEb0C1dFF8F07E7590c97B3a6bbc5Cd"
     },
     "MKR": {
       "isAppChain": true,
@@ -593,7 +607,8 @@
         "1": {
           "FAST": "0xd5Abd2eEc1443A1D53b37a6c2cc16C8A4f81f321"
         }
-      }
+      },
+      "KintoHook": "0x7CB5AB15eF334A355441E38be241bBc1fa6904f2"
     },
     "PAXG": {
       "isAppChain": true,
@@ -603,7 +618,8 @@
         "1": {
           "FAST": "0xc3D118CD6eDA0de07dDA9235C76bacB2124fD37C"
         }
-      }
+      },
+      "KintoHook": "0x4021B2350E1A90410003ae798b8eADDBC8815C8A"
     },
     "XAUT": {
       "isAppChain": true,
@@ -613,7 +629,8 @@
         "1": {
           "FAST": "0x459d21d3aB6a55e4b764b52d7a2d110f0993E22a"
         }
-      }
+      },
+      "KintoHook": "0xda1CB440ee610C6893F6e5559e4eCE86b08f331a"
     },
     "stUSD": {
       "isAppChain": true,
@@ -623,7 +640,8 @@
         "42161": {
           "FAST": "0x838183baD082Bf937EcF6ED4B3e2ce91d258D23e"
         }
-      }
+      },
+      "KintoHook": "0xd55D82Bf956e5EB701A5654aC6272Cb971437Af7"
     },
     "stEUR": {
       "isAppChain": true,
@@ -633,7 +651,8 @@
         "42161": {
           "FAST": "0xA21a73cDC42cD34Ad665C609A6Ff6FC7A557495d"
         }
-      }
+      },
+      "KintoHook": "0x1fcEE8Ed9359b12754614A5Fd5178C2308CE1e50"
     },
     "SOL": {
       "isAppChain": true,
@@ -649,7 +668,8 @@
         "42161": {
           "FAST": "0xD61Ec203867b56fD0714A44AB0E5C91B5a8a9516"
         }
-      }
+      },
+      "KintoHook": "0xEcb3309fc25dEc12d217EAf4c8581311Cd237F84"
     },
     "eUSD": {
       "isAppChain": true,
@@ -659,7 +679,8 @@
         "1": {
           "FAST": "0xF061935968E231777bCe376aEA264a0bd3d26BcF"
         }
-      }
+      },
+      "KintoHook": "0x1882A1aaFfB43363870f0fa1c6d477F69A98766F"
     },
     "rsENA": {
       "isAppChain": true,
@@ -669,7 +690,8 @@
         "1": {
           "FAST": "0xb88e2cC668d9332c4614A9E925601015B1dA7b9c"
         }
-      }
+      },
+      "KintoHook": "0x335afE256cd02AF0f2f3dDAed3D0C1FF040f6980"
     },
     "rsUSDe": {
       "isAppChain": true,
@@ -679,7 +701,8 @@
         "1": {
           "FAST": "0x378Edfee07599207559BaeBAfE8aD963f32F019f"
         }
-      }
+      },
+      "KintoHook": "0x600526e92DBBeb5A537B602F72e913a05f248FBa"
     },
     "SPX": {
       "isAppChain": true,
@@ -692,7 +715,8 @@
         "8453": {
           "FAST": "0x72138d13cB3D193a23FaC2bc3Ac8eb96b3b6545A"
         }
-      }
+      },
+      "KintoHook": "0x7E5C91C897D031C188005E1Ac11C769168fB4693"
     },
     "AAVE": {
       "isAppChain": true,
@@ -705,7 +729,8 @@
         "42161": {
           "FAST": "0xa595329cc0a3c28886BBd9b3535C385E1F778221"
         }
-      }
+      },
+      "KintoHook": "0x92d159245B8E34416250C8755498b8F149D434CD"
     },
     "WBTC": {
       "isAppChain": true,
@@ -718,7 +743,8 @@
         "42161": {
           "FAST": "0x9a1D2F38db2c8cA27020929cBe31499398aB17Ef"
         }
-      }
+      },
+      "KintoHook": "0xffE1044Acc0226121d5B22C1746E4D6516b0572C"
     },
     "USDT": {
       "isAppChain": true,
@@ -731,7 +757,8 @@
         "42161": {
           "FAST": "0x531F075801159d9066efb7B61B2C9cd658911a48"
         }
-      }
+      },
+      "KintoHook": "0x5bbC112DD031b4aEc52e8c121516A7F363739294"
     },
     "ARB": {
       "isAppChain": true,
@@ -741,7 +768,8 @@
         "42161": {
           "FAST": "0xa464b2dD90014998b8701FC680d989E5fF8B44dD"
         }
-      }
+      },
+      "KintoHook": "0x929c28F752AF92749489c338EDA28d6Bcf0489d9"
     },
     "LINK": {
       "isAppChain": true,
@@ -754,7 +782,8 @@
         "42161": {
           "FAST": "0x03146a568d0FdC2AcCE7772038e7AdAF6A34c031"
         }
-      }
+      },
+      "KintoHook": "0x4d9ec2f9115AD7d61f76a0f2C54065bdEe306cF5"
     },
     "GHO": {
       "isAppChain": true,
@@ -767,7 +796,8 @@
         "42161": {
           "FAST": "0x14068e5F36b0F5dA3831ddfa6Ff7566FF30c23ee"
         }
-      }
+      },
+      "KintoHook": "0x3f35Ac66d063164Eb2A50EAE1955045f573857D6"
     },
     "rETH": {
       "isAppChain": true,
@@ -780,7 +810,8 @@
         "42161": {
           "FAST": "0x0CB0Cb6F905DacAc380E44cE890330d18aAB25Ac"
         }
-      }
+      },
+      "KintoHook": "0xCd56E410b3C6136FB684855E099Ec11844EA5044"
     },
     "cbETH": {
       "isAppChain": true,
@@ -793,7 +824,8 @@
         "8453": {
           "FAST": "0xD615cA2E70735474745F25aE1eC89504C739F76F"
         }
-      }
+      },
+      "KintoHook": "0x67D8f56131558cacb7D7932A3E05BaD46F4eAD56"
     },
     "cbBTC": {
       "isAppChain": true,
@@ -806,7 +838,8 @@
         "8453": {
           "FAST": "0xE5AE4ac231ad1B45750e0a6f0d4ee9284B118595"
         }
-      }
+      },
+      "KintoHook": "0x9E720d22269B740198F89afa5Eb6A48b460A0066"
     },
     "USUAL": {
       "isAppChain": true,
@@ -816,7 +849,8 @@
         "1": {
           "FAST": "0x4467a1a0923c52239a9949e1D3d02eB70F2E971f"
         }
-      }
+      },
+      "KintoHook": "0xfB907C16F3e2D64c1726FBAbD51E86f9D8D0930B"
     },
     "LDO": {
       "isAppChain": true,
@@ -829,7 +863,8 @@
         "42161": {
           "FAST": "0x0c6a66a8dF25acaCc5151a2D320D873BaeC0D91f"
         }
-      }
+      },
+      "KintoHook": "0xCd1c7571fE7D65cF5B08EED69A3616980e886912"
     },
     "VIRTUAL": {
       "isAppChain": true,
@@ -842,7 +877,8 @@
         "8453": {
           "FAST": "0x6a3dbd8d0D6A319726C3c381F6544c170AF07935"
         }
-      }
+      },
+      "KintoHook": "0x4cBD43b17a249bBceCB5036f642A64Ef7135B8cf"
     },
     "ONDO": {
       "isAppChain": true,
@@ -852,7 +888,8 @@
         "1": {
           "FAST": "0xadDF53727DF468f05b316b024251A90Da2Ac2443"
         }
-      }
+      },
+      "KintoHook": "0x864a0d0E81b9Ece73379AD42dd948646E961A532"
     },
     "PENDLE": {
       "isAppChain": true,
@@ -862,7 +899,8 @@
         "1": {
           "FAST": "0x12d504756257495f6B53b50b08b3687b4868997E"
         }
-      }
+      },
+      "KintoHook": "0xcB8fCa76c80330f75cB438Ef19A5a23736FBede7"
     },
     "CRV": {
       "isAppChain": true,
@@ -878,7 +916,8 @@
         "42161": {
           "FAST": "0x11Ee07b484f76f644F7d5b71EF4e9B387742213B"
         }
-      }
+      },
+      "KintoHook": "0x6Ca242A6d96Fa9Ee4781633f98CD43f2B1C30D9C"
     }
   },
   "8453": {
