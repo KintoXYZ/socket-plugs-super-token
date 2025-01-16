@@ -32,6 +32,10 @@ import {
 } from "./projectConstants";
 import { Tokens } from "../../src/enums";
 
+const newHooksToOld = {
+  '0xCEa4372f018f6741292D3acE8FCeC5C97AD01CD0' : '0xc3ef164AB52538F11AA3c211C4Cd19e89Fcd2C3C'
+}
+
 export const updateConnectorStatus = async (
   chain: ChainSlug,
   siblingSlugs: ChainSlug[],
@@ -382,6 +386,51 @@ export const updateLimitsAndPoolId = async (
       hookContract,
       "updateConnectorPoolId",
       [connectorAddresses, connectorPoolIds],
+      chain
+    );
+  }
+  if (
+    addresses.isAppChain
+  ) {
+    for (let sibling of siblingSlugs) {
+      const siblingConnectorAddresses: ConnectorAddresses | undefined =
+        connectors[sibling];
+      if (!siblingConnectorAddresses) continue;
+
+      const integrationTypes: IntegrationTypes[] = Object.keys(
+        siblingConnectorAddresses
+      ) as unknown as IntegrationTypes[];
+      for (let it of integrationTypes) {
+        const itConnectorAddress: string | undefined =
+          siblingConnectorAddresses[it];
+        if (!itConnectorAddress) continue;
+          connectorAddresses.push(itConnectorAddress);
+        const connectorpolId = await hookContract.connectorPoolIds(itConnectorAddress);
+        connectorPoolIds.push(connectorpolId);
+      }
+    }
+    console.log('addresses:', addresses)
+    console.log('connectorAddresses:', connectorAddresses)
+    console.log('connectorPoolIds:', connectorPoolIds)
+
+    const socketSigner = getSignerFromChainSlug(chain);
+    const oldHook = (await getInstance(HookContracts.KintoHook, newHooksToOld[hookContract.address])).connect(socketSigner);
+    console.log('hookContract.address:', hookContract.address)
+    console.log('oldHook.address:', oldHook.address)
+    let amounts = [];
+    for (let index = 0; index < connectorPoolIds.length; index++) {
+      const newAmount = await hookContract.poolLockedAmounts(connectorPoolIds[index]);
+      console.log('newAmount:', newAmount)
+      const oldAmount = await oldHook.poolLockedAmounts(connectorPoolIds[index]);
+      console.log('oldAmount:', oldAmount)
+      amounts.push(newAmount.add(oldAmount));
+    }
+    console.log('amounts:', amounts)
+    console.log('connectorPoolIds:', connectorPoolIds)
+    await execute(
+      hookContract,
+      "updatePoolLockedAmounts",
+      [connectorPoolIds, amounts],
       chain
     );
   }
