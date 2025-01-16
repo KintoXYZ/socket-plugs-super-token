@@ -2,8 +2,7 @@ import {
   createBatchFiles,
   execute,
   getOwnerAndNominee,
-  getSuperBridgeAddresses,
-  ZERO_ADDRESS,
+  getSuperBridgeAddresses
 } from "../helpers";
 import { ethers } from "ethers";
 import { getSignerFromChainSlug, overrides } from "../helpers/networks";

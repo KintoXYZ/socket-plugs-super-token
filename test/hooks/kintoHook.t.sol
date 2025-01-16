@@ -43,8 +43,7 @@ contract TestKintoHook is Test {
     KintoHook kintoHook__;
     address _socket;
     address controller__;
-    address kintoId__;
-    address kintoFactory__;
+    address bridgerL2;
     address kintoWallet__;
     address kintoWalletSigner__; // 1st signer of the kinto wallet
     address kycProvider__;
@@ -57,27 +56,20 @@ contract TestKintoHook is Test {
     bytes32 constant LIMIT_UPDATER_ROLE = keccak256("LIMIT_UPDATER_ROLE");
 
     function setUp() external {
-        uint256 kintoFork = vm.createSelectFork("kinto");
+        vm.createSelectFork("kinto");
 
         vm.startPrank(_admin);
 
         _socket = address(uint160(_c++));
         controller__ = address(uint160(_c++));
-        kintoId__ = 0xf369f78E3A0492CC4e96a90dae0728A38498e9c7;
-        kintoFactory__ = 0x8a4720488CA32f1223ccFE5A087e250fE3BC5D75;
+        bridgerL2 = 0x26181Dfc530d96523350e895180b09BAf3d816a0;
         kintoWallet__ = 0x2e2B1c42E38f5af81771e65D87729E57ABD1337a;
         kintoWalletSigner__ = 0x660ad4B5A74130a4796B4d54BC6750Ae93C86e6c;
         kycProvider__ = 0x6E31039abF8d248aBed57E307C9E1b7530c269E4;
         _siblingSlug1 = uint32(_c++);
         _siblingSlug2 = uint32(_c++);
 
-        kintoHook__ = new KintoHook(
-            _admin,
-            controller__,
-            false,
-            kintoId__,
-            kintoFactory__
-        );
+        kintoHook__ = new KintoHook(_admin, controller__, false, bridgerL2);
         _token = new MintableToken("Moon", "MOON", 18);
         _token.mint(_admin, _initialSupply);
         _token.mint(_raju, _rajuInitialBal);
@@ -147,119 +139,6 @@ contract TestKintoHook is Test {
         );
         kintoHook__.updateLimitParams(u);
     }
-
-    ////// START: KintoHook:srcPreHook tests //////
-
-    function testsrcPreHookCallSenderNotKintoWallet() external {
-        _setLimits();
-
-        uint256 withdrawAmount = 10 ether;
-        uint256 dealAmount = 10 ether;
-        address sender = address(0xfede);
-        address receiver = address(0xfede);
-
-        deal(address(_token), sender, dealAmount);
-        deal(sender, _fees);
-
-        vm.startPrank(controller__);
-
-        vm.expectRevert(
-            abi.encodeWithSelector(KintoHook.InvalidSender.selector, sender)
-        );
-        kintoHook__.srcPreHookCall(
-            SrcPreHookCallParams(
-                _connector1,
-                address(sender),
-                TransferInfo(receiver, withdrawAmount, bytes(""))
-            )
-        );
-        vm.stopPrank();
-    }
-
-    function testsrcPreHookCallSenderNotKYCd() external {
-        _setLimits();
-
-        uint256 withdrawAmount = 10 ether;
-        uint256 dealAmount = 10 ether;
-        address sender = kintoWallet__;
-        address receiver = address(0xfede);
-
-        // revoke KYC to sender
-        vm.prank(kycProvider__);
-        KintoID(kintoId__).addSanction(kintoWalletSigner__, 1);
-
-        deal(address(_token), sender, dealAmount);
-        deal(sender, _fees);
-
-        vm.startPrank(controller__);
-
-        vm.expectRevert(KintoHook.KYCRequired.selector);
-        kintoHook__.srcPreHookCall(
-            SrcPreHookCallParams(
-                _connector1,
-                address(sender),
-                TransferInfo(receiver, withdrawAmount, bytes(""))
-            )
-        );
-        vm.stopPrank();
-    }
-
-    function testsrcPreHookCallReceiverIsKintoWalletSigner() external {
-        _setLimits();
-
-        uint256 withdrawAmount = 10 ether;
-        uint256 dealAmount = 10 ether;
-        address sender = kintoWallet__;
-        address receiver = kintoWalletSigner__;
-
-        deal(address(_token), sender, dealAmount);
-        deal(sender, _fees);
-
-        vm.startPrank(controller__);
-
-        kintoHook__.srcPreHookCall(
-            SrcPreHookCallParams(
-                _connector1,
-                address(sender),
-                TransferInfo(receiver, withdrawAmount, bytes(""))
-            )
-        );
-        vm.stopPrank();
-    }
-
-    function testsrcPreHookCallReceiverAllowed() external {
-        _setLimits();
-
-        uint256 withdrawAmount = 10 ether;
-        uint256 dealAmount = 10 ether;
-        address sender = kintoWallet__;
-        address receiver = address(0xfede);
-
-        // whitelist the receiver
-        address[] memory whitelist = new address[](1);
-        whitelist[0] = receiver;
-        bool[] memory flags = new bool[](1);
-        flags[0] = true;
-
-        vm.prank(kintoWallet__);
-        KintoWallet(kintoWallet__).setFunderWhitelist(whitelist, flags);
-
-        deal(address(_token), sender, dealAmount);
-        deal(sender, _fees);
-
-        vm.startPrank(controller__);
-
-        kintoHook__.srcPreHookCall(
-            SrcPreHookCallParams(
-                _connector1,
-                address(sender),
-                TransferInfo(receiver, withdrawAmount, bytes(""))
-            )
-        );
-        vm.stopPrank();
-    }
-
-    ////// FINISH: KintoHook:srcPreHook tests //////
 
     function testsrcPreHookCallSender() external {
         _setLimits();
@@ -402,172 +281,6 @@ contract TestKintoHook is Test {
         );
         assertEq(burnLimitAfter, _burnMaxLimit, "burn limit sus");
     }
-
-    ////// START: KintoHook:dstPreHookCall tests //////
-
-    function testdstPreHookCallReceiverNotKintoWallet() external {
-        _setLimits();
-        uint256 depositAmount = 2 ether;
-        address sender = kintoWalletSigner__; // original sender from vault chain
-        address receiver = address(0xfede);
-
-        vm.expectRevert(
-            abi.encodeWithSelector(KintoHook.InvalidReceiver.selector, receiver)
-        );
-        vm.startPrank(controller__);
-        (
-            bytes memory postHookData,
-            TransferInfo memory transferInfo
-        ) = kintoHook__.dstPreHookCall(
-                DstPreHookCallParams(
-                    _connector1,
-                    bytes(""),
-                    TransferInfo(receiver, depositAmount, abi.encode(sender))
-                )
-            );
-    }
-
-    function testdstPreHookCallReceiverNotKYCd() external {
-        _setLimits();
-        uint256 depositAmount = 2 ether;
-        address sender = kintoWalletSigner__; // original sender from vault chain
-        address receiver = kintoWallet__;
-
-        // revoke KYC to receiver
-        vm.prank(kycProvider__);
-        KintoID(kintoId__).addSanction(kintoWalletSigner__, 1);
-
-        vm.expectRevert(KintoHook.KYCRequired.selector);
-        vm.startPrank(controller__);
-        (
-            bytes memory postHookData,
-            TransferInfo memory transferInfo
-        ) = kintoHook__.dstPreHookCall(
-                DstPreHookCallParams(
-                    _connector1,
-                    bytes(""),
-                    TransferInfo(receiver, depositAmount, abi.encode(sender))
-                )
-            );
-    }
-
-    function testdstPreHookCallSenderNotAllowed() external {
-        _setLimits();
-        uint256 depositAmount = 2 ether;
-        address sender = address(0xfede); // original sender from vault chain
-        address receiver = kintoWallet__;
-
-        vm.expectRevert(
-            abi.encodeWithSelector(KintoHook.SenderNotAllowed.selector, sender)
-        );
-        vm.startPrank(controller__);
-        (
-            bytes memory postHookData,
-            TransferInfo memory transferInfo
-        ) = kintoHook__.dstPreHookCall(
-                DstPreHookCallParams(
-                    _connector1,
-                    bytes(""),
-                    TransferInfo(receiver, depositAmount, abi.encode(sender))
-                )
-            );
-    }
-
-    function testdstPreHookCallCallReceiverIsInAllowlist() external {
-        _setLimits();
-        uint256 depositAmount = 2 ether;
-        address sender = address(0xfede); // original sender from vault chain
-        address receiver = address(0xdead);
-
-        vm.prank(kintoHook__.owner());
-        kintoHook__.setSender(sender, true);
-
-        vm.prank(kintoHook__.owner());
-        kintoHook__.setReceiver(receiver, true);
-
-        vm.startPrank(controller__);
-        (
-            bytes memory postHookData,
-            TransferInfo memory transferInfo
-        ) = kintoHook__.dstPreHookCall(
-                DstPreHookCallParams(
-                    _connector1,
-                    bytes(""),
-                    TransferInfo(receiver, depositAmount, abi.encode(sender))
-                )
-            );
-    }
-
-    function testdstPreHookCallCallSenderIsInAllowlist() external {
-        _setLimits();
-        uint256 depositAmount = 2 ether;
-        address sender = address(123); // original sender from vault chain
-        address receiver = kintoWallet__;
-
-        vm.prank(kintoHook__.owner());
-        kintoHook__.setSender(sender, true); // allow sender to bypass Kinto check (e.g BridgerL1)
-
-        vm.startPrank(controller__);
-        (
-            bytes memory postHookData,
-            TransferInfo memory transferInfo
-        ) = kintoHook__.dstPreHookCall(
-                DstPreHookCallParams(
-                    _connector1,
-                    bytes(""),
-                    TransferInfo(receiver, depositAmount, abi.encode(sender))
-                )
-            );
-    }
-
-    function testdstPreHookCallCallSenderIsKintoWalletSigner() external {
-        _setLimits();
-        uint256 depositAmount = 2 ether;
-        address sender = kintoWalletSigner__; // original sender from vault chain
-        address receiver = kintoWallet__;
-
-        vm.startPrank(controller__);
-        (
-            bytes memory postHookData,
-            TransferInfo memory transferInfo
-        ) = kintoHook__.dstPreHookCall(
-                DstPreHookCallParams(
-                    _connector1,
-                    bytes(""),
-                    TransferInfo(receiver, depositAmount, abi.encode(sender))
-                )
-            );
-    }
-
-    function testdstPreHookCallCallSenderAllowed() external {
-        _setLimits();
-        uint256 depositAmount = 2 ether;
-        address sender = address(0xfede); // original sender from vault chain
-        address receiver = kintoWallet__;
-
-        // whitelist the receiver
-        address[] memory whitelist = new address[](1);
-        whitelist[0] = sender;
-        bool[] memory flags = new bool[](1);
-        flags[0] = true;
-
-        vm.prank(kintoWallet__);
-        KintoWallet(kintoWallet__).setFunderWhitelist(whitelist, flags);
-
-        vm.startPrank(controller__);
-        (
-            bytes memory postHookData,
-            TransferInfo memory transferInfo
-        ) = kintoHook__.dstPreHookCall(
-                DstPreHookCallParams(
-                    _connector1,
-                    bytes(""),
-                    TransferInfo(receiver, depositAmount, abi.encode(sender))
-                )
-            );
-    }
-
-    ////// FINISH: KintoHook:dstPreHookCall tests //////
 
     function testFullConsumeDstCall() external {
         _setLimits();

@@ -1,6 +1,7 @@
 import { Contract } from "ethers";
 import { getOwner, isSuperBridge, isSuperToken } from "../constants/config";
 import { getOrDeploy } from "../helpers";
+import { BRIDGER_L2_ADDRESS } from "../../src/constants";
 import { Hooks, HookContracts, DeployParams } from "../../src";
 import { getBridgeContract } from "../helpers/common";
 import { kintoConfig } from "kinto-utils/dist/utils/constants";
@@ -57,8 +58,7 @@ export const deployHookContracts = async (
         process.env.KINTO_OWNER_ADDRESS,
         bridgeAddress,
         useConnnectorPools, // useControllerPools
-        kintoConfig[deployParams.currentChainSlug].contracts.kintoID.address,
-        kintoConfig[deployParams.currentChainSlug].contracts.factory.address,
+        BRIDGER_L2_ADDRESS
       ];
     } else {
       contractName = HookContracts.SenderHook;
