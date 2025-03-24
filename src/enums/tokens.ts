@@ -13,7 +13,6 @@ export enum Tokens {
   wUSDM = "wUSDM",
   ETHFI = "ETHFI",
   SolvBTC = "SolvBTC",
-  KINTO = "KINTO",
   MKR = "MKR",
   PAXG = "PAXG",
   XAUT = "XAUT",
