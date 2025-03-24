@@ -2,7 +2,7 @@ import { ChainSlug } from "@socket.tech/dl-core";
 import { Project, Tokens } from "./enums";
 
 export const ChainSlugToProject: { [chainSlug in ChainSlug]?: Project } = {
-  
+  [ChainSlug.KINTO]: Project.KINTO,
 };
 
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
