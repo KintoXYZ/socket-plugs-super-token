@@ -18,7 +18,7 @@ export const pc: ProjectConstants = {
           decimals: 18,
           initialSupplyOwner: getOwner(),
           owner: getOwner(),
-          initialSupply: 10_000_000,
+          initialSupply: 0,
         },
         hook: {
           hookType: Hooks.KINTO_HOOK,
