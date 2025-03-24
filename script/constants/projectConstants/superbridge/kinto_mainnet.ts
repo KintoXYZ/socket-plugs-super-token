@@ -378,27 +378,6 @@ export const pc: ProjectConstants = {
         },
       },
     },
-    [Tokens.KINTO]: {
-      vaultChains: [ChainSlug.MAINNET],
-      controllerChains: [ChainSlug.KINTO],
-      hook: {
-        hookType: Hooks.KINTO_HOOK,
-        limitsAndPoolId: {
-          [ChainSlug.KINTO]: {
-            [IntegrationTypes.fast]: {
-              receivingLimit: "500000",
-              sendingLimit: "500000",
-            },
-          },
-          [ChainSlug.MAINNET]: {
-            [IntegrationTypes.fast]: {
-              receivingLimit: "500000",
-              sendingLimit: "500000",
-            },
-          },
-        },
-      },
-    },
     [Tokens.MKR]: {
       vaultChains: [ChainSlug.MAINNET],
       controllerChains: [ChainSlug.KINTO],

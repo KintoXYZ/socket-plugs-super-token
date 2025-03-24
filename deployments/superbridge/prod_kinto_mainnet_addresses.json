@@ -143,17 +143,6 @@
         }
       }
     },
-    "KINTO": {
-      "isAppChain": false,
-      "NonMintableToken": "0x2367C8395a283f0285c6E312D5aA15826f1fEA25",
-      "Vault": "0x2f87464d5F5356dB350dcb302FE28040986783a7",
-      "SenderHook": "0x7851Dfc291573eaa50b25755ccDf059D0FD5029c",
-      "connectors": {
-        "7887": {
-          "FAST": "0xA7384185a6428e6B0D33199256fE67b6fA5D8e40"
-        }
-      }
-    },
     "MKR": {
       "isAppChain": false,
       "NonMintableToken": "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2",
@@ -587,17 +576,6 @@
         }
       },
       "KintoHook": "0x519d36b7f01cD291E37F9776eC4D70c43BF9617f"
-    },
-    "KINTO": {
-      "isAppChain": true,
-      "MintableToken": "0x010700808D59d2bb92257fCafACfe8e5bFF7aB87",
-      "Controller": "0xE1857425c14afe4142cE4df1eCb3439f194d5D1b",
-      "connectors": {
-        "1": {
-          "FAST": "0x0bf0dcEfa8d7E31d18cEf882A74499FA277F088C"
-        }
-      },
-      "KintoHook": "0x228993DDDeEb0C1dFF8F07E7590c97B3a6bbc5Cd"
     },
     "MKR": {
       "isAppChain": true,
