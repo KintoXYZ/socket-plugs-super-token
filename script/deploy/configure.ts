@@ -138,6 +138,47 @@ export const configure = async (allAddresses: SBAddresses | STAddresses) => {
           }
 
           // grant minter role to controller for mintable token
+          if (isSuperToken() && chain === ChainSlug.KINTO) {
+            // for each connector, grant socket relayer role to each one of the socket relayer role contracts
+            const contracts = getAddresses(chain, getMode());
+            const socketRelayerRoleContracts = [
+              contracts.Socket,
+              contracts.ExecutionManager,
+              contracts.TransmitManager,
+              // contracts.FastSwitchboard, // No need
+              contracts.OptimisticSwitchboard,
+              contracts.SocketBatcher,
+              contracts.SocketSimulator,
+              contracts.SimulatorUtils,
+              contracts.SwitchboardSimulator,
+              contracts.CapacitorSimulator,
+            ];
+            const connectorsAddresses = Object.values(connectors)
+              .map((connector) => Object.values(connector))
+              .flat();
+            for (const contract of socketRelayerRoleContracts) {
+              const contractInstance = new ethers.Contract(
+                contract,
+                [
+                  "function grantRole(bytes32 role, address account)",
+                  "function hasRole(bytes32 role, address account) view returns (bool)",
+                ],
+                socketSigner
+              );
+
+              for (const connector of connectorsAddresses) {
+                await checkAndGrantRole(
+                  chain,
+                  contractInstance,
+                  "Socket Relayer",
+                  SOCKET_RELAYER_ROLE,
+                  connector
+                );
+              }
+            }
+          }
+
+          // grant minter role to controller for mintable token
           if (isSuperBridge() && chain === ChainSlug.KINTO) {
             const a = addr as AppChainAddresses;
             const mintableToken = a[TokenContracts.MintableToken];

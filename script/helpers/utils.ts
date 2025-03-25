@@ -215,11 +215,12 @@ export async function execute(
       // if contract owner is not the SAFE, send transaction
       // TODO: check if sender has the necessary role to do it
       // or we just assume the SAFE always has the necessary roles.
-      if (owner != null &&
+      if (
+        owner != null &&
         ((method === "claimOwner" &&
           nominee.toLowerCase() === safe.toLowerCase()) ||
-        owner.toLowerCase() == safe.toLowerCase()
-      )) {
+          owner.toLowerCase() == safe.toLowerCase())
+      ) {
         // console.log(`   -   Owner of ${contract.address} is Gnosis Safe`);
         console.log(
           YELLOW,
