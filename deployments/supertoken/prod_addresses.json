@@ -1,0 +1,49 @@
+{
+  "kinto": {
+    "1": {
+      "KINTO": {
+        "SuperToken": "0x0107006da856F5225ee585a2316a0339209F4439",
+        "Controller": "0xa5E3CaC8C3b9CBE4D9d85aa690013369b898BdDd",
+        "SenderHook": "0xb55760ce990217A3D3A7c98c97569A3Fc7467735",
+        "connectors": {
+          "7887": {
+            "FAST": "0x7163FaC3fc420923810cCA5d15949c1523F69B4a"
+          },
+          "42161": {
+            "FAST": "0x432684E7e764343c836d9c78b9245aa774323E40"
+          }
+        }
+      }
+    },
+    "7887": {
+      "KINTO": {
+        "NonMintableToken": "0x010700808D59d2bb92257fCafACfe8e5bFF7aB87",
+        "Vault": "0x3De040ef2Fbf9158BADF559C5606d7706ca72309",
+        "KintoHook": "0x72E837e4520600674B9bcB55FCea2ED891A7C508",
+        "connectors": {
+          "1": {
+            "FAST": "0xC249179B24A9B2B8d76a2026A49D7bb4307Ca674"
+          },
+          "42161": {
+            "FAST": "0xbef01d401b54C19B2bcFe93f5e55e0355fE24A73"
+          }
+        }
+      }
+    },
+    "42161": {
+      "KINTO": {
+        "SuperToken": "0x010700AB046Dd8e92b0e3587842080Df36364ed3",
+        "Controller": "0x702BD1AC995Bf22B8B711A1Ce9796bAc9bdd1f1f",
+        "SenderHook": "0xB4bdb797262129b39221f03B0571EAC225777836",
+        "connectors": {
+          "1": {
+            "FAST": "0xC1cF5A13c0E2388A79c2708fc684BcFF9F1048e8"
+          },
+          "7887": {
+            "FAST": "0x1827E7f732D5338315031d63Cc54F41D3Cdf6CDA"
+          }
+        }
+      }
+    }
+  }
+}

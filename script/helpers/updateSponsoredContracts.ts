@@ -11,8 +11,11 @@ import {
   SuperBridgeContracts,
   HookContracts,
 } from "../../src";
+import { isSuperBridge } from "../constants";
 
-async function updateSponsoredContracts(addresses: SBAddresses | STAddresses): Promise<void> {
+async function updateSponsoredContracts(
+  addresses: SBAddresses | STAddresses
+): Promise<void> {
   const chainId = ChainSlug.KINTO;
   const chainIdStr = chainId.toString();
   const config = kintoConfig[chainIdStr];
@@ -45,18 +48,19 @@ async function updateSponsoredContracts(addresses: SBAddresses | STAddresses): P
   for (const token in kintoAddresses) {
     const tokenAddresses = kintoAddresses[token];
 
-    // AddMintableToken 
-    const mintableToken = tokenAddresses[SuperBridgeContracts.MintableToken];
-    if (!mintableToken) {
+    // AddMintableToken
+    const tokenToAdd = isSuperBridge()
+      ? tokenAddresses[SuperBridgeContracts.MintableToken]
+      : tokenAddresses[SuperBridgeContracts.NonMintableToken];
+    if (!tokenToAdd) {
       throw new Error(
-        `No Controller contract found for ${token} on Kinto chain`
+        `No MintableToken contract found for ${token} on Kinto chain`
       );
     }
-    console.log("MintableToken:", mintableToken);
+    console.log("tokenToAdd:", tokenToAdd);
 
     // Add Controller
-    contractsToAdd.push(mintableToken);
-
+    contractsToAdd.push(tokenToAdd);
   }
 
   console.log("contractsToAdd:", contractsToAdd);
@@ -66,7 +70,7 @@ async function updateSponsoredContracts(addresses: SBAddresses | STAddresses): P
       kintoWalletAddr,
       kintoConfig[chainIdStr].contracts.socketDL.address,
       contractsToAdd,
-      contractsToAdd.map(_ => true),
+      contractsToAdd.map((_) => true),
       privateKeys,
       chainIdStr
     );

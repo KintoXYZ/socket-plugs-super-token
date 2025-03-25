@@ -10,10 +10,8 @@ export const ExistingTokenAddresses: {
   [ChainSlug.ARBITRUM]: {
     [Tokens.KINTO]: "0x010700AB046Dd8e92b0e3587842080Df36364ed3",
   },
-  [ChainSlug.BASE]: {
-    
-  },
+  [ChainSlug.BASE]: {},
   [ChainSlug.KINTO]: {
-    
+    [Tokens.KINTO]: "0x010700808D59d2bb92257fCafACfe8e5bFF7aB87",
   },
 };

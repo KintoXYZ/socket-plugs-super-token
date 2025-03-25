@@ -58,7 +58,7 @@ export const deployHookContracts = async (
         process.env.KINTO_OWNER_ADDRESS,
         bridgeAddress,
         useConnnectorPools, // useControllerPools
-        BRIDGER_L2_ADDRESS
+        BRIDGER_L2_ADDRESS,
       ];
     } else {
       contractName = HookContracts.SenderHook;

@@ -11,6 +11,7 @@ import { getSignerFromChainSlug } from "../helpers/networks";
 import { kintoConfig, LEDGER, TREZOR } from "kinto-utils/dist/utils/constants";
 import { addAppContracts } from "kinto-utils/dist/kinto";
 import { Tokens } from "../../src/enums";
+import { isSuperBridge } from "../constants";
 
 const BATCH_SIZE = 25;
 
@@ -51,7 +52,9 @@ async function addContracts(
     if (!tokenAddresses) continue;
 
     // Add Controller
-    const controller = tokenAddresses[SuperBridgeContracts.Controller];
+    const controller = isSuperBridge()
+      ? tokenAddresses[SuperBridgeContracts.Controller]
+      : tokenAddresses[SuperBridgeContracts.Vault];
     if (!controller) {
       throw new Error(
         `No Controller contract found for ${token} on Kinto chain`

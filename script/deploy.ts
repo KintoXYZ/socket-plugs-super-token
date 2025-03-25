@@ -1,7 +1,11 @@
 import { ChainSlug } from "@socket.tech/dl-core";
 import { configure } from "./deploy/configure";
 import { deploy } from "./deploy/deploy";
-import { addContracts, updateAppKey, updateSponsoredContracts } from "./helpers";
+import {
+  addContracts,
+  updateAppKey,
+  updateSponsoredContracts,
+} from "./helpers";
 import { kintoConfig } from "kinto-utils/dist/utils/constants";
 
 export const main = async () => {
