@@ -11,7 +11,6 @@ export const ExistingTokenAddresses: {
     [Tokens.WBTC]: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
     [Tokens.SNX]: "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
     [Tokens.WSTETH]: "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
-    [Tokens.KINTO]: "0x0107006da856F5225ee585a2316a0339209F4439",
   },
   [ChainSlug.OPTIMISM]: {
     [Tokens.USDC]: "0x8e0b7e6062272B5eF4524250bFFF8e5Bd3497757",
@@ -29,7 +28,7 @@ export const ExistingTokenAddresses: {
     [Tokens.WETH]: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
     [Tokens.WBTC]: "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
     [Tokens.WSTETH]: "0x5979D7b546E38E414F7E9822514be443A4800529",
-    [Tokens.KINTO]: "0x010700AB046Dd8e92b0e3587842080Df36364ed3",
+    [Tokens.KINTO]: "0x6bA19Ee69D5DDe3aB70185C801fA404F66feDB58",
   },
   [ChainSlug.BASE]: {
     [Tokens.USDC]: "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",

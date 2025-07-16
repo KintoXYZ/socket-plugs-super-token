@@ -11,7 +11,7 @@ export const pc: ProjectConstants = {
   [DeploymentMode.PROD]: {
     [Tokens.KINTO]: {
       vaultChains: [ChainSlug.KINTO],
-      controllerChains: [ChainSlug.MAINNET, ChainSlug.ARBITRUM],
+      controllerChains: [ChainSlug.ARBITRUM],
       superTokenInfo: {
         name: "Kinto Token",
         symbol: "K",
@@ -24,12 +24,6 @@ export const pc: ProjectConstants = {
         hookType: Hooks.KINTO_HOOK,
         limitsAndPoolId: {
           [ChainSlug.KINTO]: {
-            [IntegrationTypes.fast]: {
-              sendingLimit: "500000",
-              receivingLimit: "500000",
-            },
-          },
-          [ChainSlug.MAINNET]: {
             [IntegrationTypes.fast]: {
               sendingLimit: "500000",
               receivingLimit: "500000",
