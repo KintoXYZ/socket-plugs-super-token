@@ -5,12 +5,23 @@
         "NonMintableToken": "0x010700808D59d2bb92257fCafACfe8e5bFF7aB87",
         "Vault": "0x3De040ef2Fbf9158BADF559C5606d7706ca72309",
         "KintoHook": "0x72E837e4520600674B9bcB55FCea2ED891A7C508",
-        "connectors": {}
+        "connectors": {
+          "42161": {
+            "FAST": "0x2eaf8605AC68794C148034285e8ad6A049b7aA88"
+          }
+        }
       }
     },
     "42161": {
       "KINTO": {
-        "SuperToken": "0x6bA19Ee69D5DDe3aB70185C801fA404F66feDB58"
+        "SuperToken": "0x6bA19Ee69D5DDe3aB70185C801fA404F66feDB58",
+        "Controller": "0xb39f7e487e69BDba0EAB471223dDc52c8044A57c",
+        "SenderHook": "0x3C06866A9ccaD7E96Ef9336bB920d5Be8C27B001",
+        "connectors": {
+          "7887": {
+            "FAST": "0xf30B64f02C665722e1b2ab7731D8b845224adAec"
+          }
+        }
       }
     }
   }
